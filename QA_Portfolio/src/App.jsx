@@ -10,6 +10,7 @@ import ContactSection from './pages/ContactSection'
 import Footer from './pages/Footer'
 import SocialMediaBar from './components/SocialMediaBar'
 
+
 function App() {
   const [activeSection, setActiveSection] = useState('home')
 

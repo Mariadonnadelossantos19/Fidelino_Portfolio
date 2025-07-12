@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import CarouselSlider from '../components/CarouselSlider';
 
-const sampleImage = require('../assets/images/DONNA.jpg'); // Placeholder image
+import sampleImage from '../assets/images/DONNA.jpg';
+import pdf1 from '../assets/pdf/microsoft productivity tools.pdf';
+import pdf2 from '../assets/pdf/Programming for Intermediate Users Using Python.pdf';
 
 const CertificatesSection = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -199,6 +201,49 @@ const CertificatesSection = () => {
     </div>
   ));
 
+  const truncateFilename = (filename, maxLength) => {
+    if (filename.length <= maxLength) return filename;
+    return filename.substring(0, maxLength) + '...';
+  };
+
+  const pdfFiles = [
+    { filename: 'Basic level of software enginnering.pdf', url: pdf1 },
+    { filename: 'Programming for Intermediate Users Using Python.pdf', url: pdf2 },
+  ].sort((a, b) => a.filename.localeCompare(b.filename));
+
+  const pdfCards = pdfFiles.map((pdf) => (
+    <div
+      key={pdf.filename}
+      className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl h-full flex flex-col"
+    >
+      <div className="p-6 pb-2 flex flex-col items-center">
+        <h3 className="text-lg font-bold text-white text-center mb-2 group-hover:text-purple-400 transition-colors duration-300">
+          {truncateFilename(pdf.filename, 40)}
+        </h3>
+      </div>
+      <div className="flex-1 flex items-center justify-center px-4 pb-4">
+        <iframe
+          src={pdf.url + '#toolbar=0&navpanes=0&scrollbar=0&page=1'}
+          title={pdf.filename}
+          className="w-full h-48 rounded-lg shadow-md border border-white/10 bg-white/10"
+          loading="lazy"
+        />
+      </div>
+      <div className="p-6 pt-0 flex justify-center">
+        <a
+          href={pdf.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400/60"
+        >
+          View Full Certificate
+        </a>
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none"></div>
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none blur-xl -z-10"></div>
+    </div>
+  ));
+
   return (
     <section id="certificates" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
       <div className="max-w-7xl mx-auto">
@@ -213,6 +258,10 @@ const CertificatesSection = () => {
           itemsPerView={3}
           className="mb-16"
         />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {certificateCards}
+          {pdfCards}
+        </div>
         {/* Modal Preview */}
         {modalOpen && selectedCertificate && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
