@@ -1,6 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
+
+const SERVICE_ID = 'service_zatye1i';
+const TEMPLATE_ID = 'template_kd1r6nz';
+const PUBLIC_KEY = 'YOUR_PUBLIC_KEY_HERE'; // Replace with your actual public key
+
+const initialState = { name: '', email: '', message: '' };
 
 const ContactSection = () => {
+  const [form, setForm] = useState(initialState);
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(null); // { type: 'success'|'error', message: string }
+
+  const validate = () => {
+    const { name, email, message } = form;
+    if (name.trim().length < 2) return 'Name must be at least 2 characters.';
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return 'Please enter a valid email address.';
+    if (message.trim().length < 20) return 'Message must be at least 20 characters.';
+    return null;
+  };
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setAlert(null);
+    const error = validate();
+    if (error) {
+      setAlert({ type: 'error', message: error });
+      return;
+    }
+    setLoading(true);
+    try {
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        from_name: form.name,
+        from_email: form.email,
+        message: form.message,
+      }, PUBLIC_KEY);
+      setAlert({ type: 'success', message: 'Message sent!' });
+      setForm(initialState);
+    } catch (err) {
+      setAlert({ type: 'error', message: 'Failed to send. Please try again.' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-20 px-4 bg-black/20">
       <div className="max-w-4xl mx-auto">
@@ -51,36 +98,86 @@ const ContactSection = () => {
             </div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-            <form className="space-y-6">
-              <div>
-                <label className="block text-white font-medium mb-2">Name</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
-                  placeholder="Your name"
-                />
+            {alert && (
+              <div
+                className={`mb-6 px-4 py-3 rounded-lg text-sm font-semibold shadow-md transition-all duration-300 ${
+                  alert.type === 'success'
+                    ? 'bg-green-500/20 text-green-300 border border-green-400/30'
+                    : 'bg-red-500/20 text-red-300 border border-red-400/30'
+                }`}
+                role="alert"
+                aria-live="polite"
+              >
+                {alert.message}
+              </div>
+            )}
+            <form className="space-y-6" onSubmit={handleSubmit} autoComplete="off" noValidate>
+              <div className="md:flex md:space-x-4">
+                <div className="flex-1 mb-4 md:mb-0">
+                  <label htmlFor="name" className="block text-white font-medium mb-2">Name</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    minLength={2}
+                    required
+                    aria-required="true"
+                    aria-label="Name"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
+                    placeholder="Your name"
+                    value={form.name}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex-1">
+                  <label htmlFor="email" className="block text-white font-medium mb-2">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    aria-required="true"
+                    aria-label="Email"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
+                    placeholder="your.email@example.com"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
               <div>
-                <label className="block text-white font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              <div>
-                <label className="block text-white font-medium mb-2">Message</label>
+                <label htmlFor="message" className="block text-white font-medium mb-2">Message</label>
                 <textarea
+                  id="message"
+                  name="message"
                   rows="4"
+                  minLength={20}
+                  required
+                  aria-required="true"
+                  aria-label="Message"
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors resize-none"
                   placeholder="Your message..."
+                  value={form.message}
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
+                className="w-full px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400/60 relative"
+                disabled={loading}
+                aria-busy={loading}
               >
-                Send Message
+                {loading ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                    </svg>
+                    Sending...
+                  </span>
+                ) : (
+                  'Send Message'
+                )}
               </button>
             </form>
           </div>

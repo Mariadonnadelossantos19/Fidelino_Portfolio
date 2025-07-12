@@ -79,7 +79,7 @@ const Navbar = () => {
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Ma. Donna
+                  Fidelino
                 </span>
                 <span className="text-sm text-gray-300 font-medium">QA Engineer & Developer</span>
               </div>

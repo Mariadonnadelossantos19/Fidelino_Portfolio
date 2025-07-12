@@ -4,6 +4,15 @@ import CarouselSlider from '../components/CarouselSlider';
 import sampleImage from '../assets/images/DONNA.jpg';
 import pdf1 from '../assets/pdf/microsoft productivity tools.pdf';
 import pdf2 from '../assets/pdf/Programming for Intermediate Users Using Python.pdf';
+import pdf3 from '../assets/pdf/Basic level of software enginnering.pdf';
+import pdf4 from '../assets/pdf/MA. DONNA D. FIDELINO  - Figma 101 P1 Cert of Participation(sgd) (1).pdf';
+import pdf5 from '../assets/pdf/MA. DONNA D. FIDELINO - Figma 101 P2 Cert of Participation(sgd).pdf';
+import pdf6 from '../assets/pdf/MA. DONNA D. FIDELINO  Certificate of Participation.pdf';
+import pdf7 from '../assets/pdf/Ma. Donna D. Fidelino (1).pdf';
+import pdf8 from '../assets/pdf/MA. DONNA D. FIDELINO - Basic Photography Techniques Cert of Participation(sgd) (1).pdf';
+import pdf9 from '../assets/pdf/WOPS_MA. DONNA D. FIDELINO.pdf';
+
+
 
 const CertificatesSection = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -125,7 +134,7 @@ const CertificatesSection = () => {
     setSelectedCertificate(null);
   };
 
-  // Create certificate cards for carousel
+  // Custom certificate cards
   const certificateCards = certificates.map((certificate) => (
     <div
       key={certificate.id}
@@ -209,6 +218,13 @@ const CertificatesSection = () => {
   const pdfFiles = [
     { filename: 'Basic level of software enginnering.pdf', url: pdf1 },
     { filename: 'Programming for Intermediate Users Using Python.pdf', url: pdf2 },
+    { filename: 'microsoft productivity tools.pdf', url: pdf3 },
+    { filename: 'Figma 101 P1 Cert of Participation(sgd) (1).pdf', url: pdf4 },
+    { filename: 'Figma 101 P2 Cert of Participation(sgd).pdf', url: pdf5 },
+    { filename: 'Certificate of Participation.pdf', url: pdf6 },
+    { filename: ' (1).pdf', url: pdf7 },
+    { filename: ' Basic Photography Techniques Cert of Participation(sgd) (1).pdf', url: pdf8 },
+    
   ].sort((a, b) => a.filename.localeCompare(b.filename));
 
   const pdfCards = pdfFiles.map((pdf) => (
@@ -247,6 +263,10 @@ const CertificatesSection = () => {
   return (
     <section id="certificates" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
       <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center gradient-text">
+          Professional Certificates
+        </h2>
+        {/* Carousel for custom certificates */}
         <CarouselSlider
           items={certificateCards}
           title="Professional Certificates"
@@ -258,10 +278,17 @@ const CertificatesSection = () => {
           itemsPerView={3}
           className="mb-16"
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {certificateCards}
-          {pdfCards}
-        </div>
+        {/* Carousel for PDF certificates */}
+        <CarouselSlider
+          items={pdfCards}
+          title="PDF Certificates"
+          subtitle="Official PDF certificates with embedded previews. Click 'View Full Certificate' to see the complete document."
+          autoPlay={false}
+          showDots={true}
+          showArrows={true}
+          itemsPerView={3}
+          className="mb-16"
+        />
         {/* Modal Preview */}
         {modalOpen && selectedCertificate && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
