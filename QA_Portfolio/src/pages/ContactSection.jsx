@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 
 const SERVICE_ID = 'service_zatye1i';
 const TEMPLATE_ID = 'template_kd1r6nz';
-const PUBLIC_KEY = 'YOUR_PUBLIC_KEY_HERE'; // Replace with your actual public key
+const PUBLIC_KEY = '-aka4n_AIKbgt1VmH';
 
 const initialState = { name: '', email: '', message: '' };
 

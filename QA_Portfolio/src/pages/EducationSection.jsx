@@ -1,93 +1,85 @@
 import React from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
+import yourProfilePhoto from '../assets/images/pro1.JPG';
+import istqbPDF from '../assets/pdf/Basic level of software enginnering.pdf';
+import seleniumPDF from '../assets/pdf/CISCO1.pdf';
+import reactPDF from '../assets/pdf/CISCO2.pdf';
+import jsPDF from '../assets/pdf/Cybersecurity Policy  Foundations.pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+
+const CERTIFICATES = [
+  {
+    title: 'Basic Level of Software Engineering',
+    provider: 'School/University',
+    date: '2022',
+    file: istqbPDF,
+    type: 'pdf',
+  },
+  {
+    title: 'CISCO1',
+    provider: 'Cisco',
+    date: '2022',
+    file: seleniumPDF,
+    type: 'pdf',
+  },
+  {
+    title: 'CISCO2',
+    provider: 'Cisco',
+    date: '2022',
+    file: reactPDF,
+    type: 'pdf',
+  },
+  {
+    title: 'Cybersecurity Policy Foundations',
+    provider: 'DICT',
+    date: '2023',
+    file: jsPDF,
+    type: 'pdf',
+  },
+];
 
 const EducationSection = () => {
   return (
-    <section id="education" className="py-20 px-4 bg-black/20">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-white text-center mb-16">
-          <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Education</span> & Training
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Academic Background */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300">
-            <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-white mb-4">Bachelor's Degree</h3>
-            <div className="space-y-3">
-              <div className="text-gray-300">
-                <p className="font-semibold text-purple-400">Information Technology</p>
-                <p className="text-sm">Marinduque State University</p>
-                <p className="text-sm">2021 - 2025</p>
-              </div>
-              <div className="text-gray-300">
-                <p className="font-semibold text-purple-400">GPA: 1.5/1.0</p>
-                <p className="text-sm">Dean's List: 3 years</p>
-              </div>
-            </div>
+    <section id="education" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16">
+        {/* Profile Photo - Main Visual */}
+        <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:block">
+          <img
+            src={yourProfilePhoto}
+            alt="Ma. Donna Fidelino"
+            className="h-[380px] w-auto md:h-[480px] object-cover rounded-3xl shadow-2xl border-none bg-gradient-to-b from-purple-500/10 to-pink-500/10"
+            style={{ boxShadow: '0 8px 40px 0 rgba(128,0,128,0.25)' }}
+          />
+        </div>
+        {/* Education Details & Certificates */}
+        <div className="flex-1 w-full">
+          <h2 className="text-4xl font-extrabold text-white mb-6 tracking-tight">Education & Credentials</h2>
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-purple-300 mb-1">BS in Information Technology</h3>
+            <p className="text-lg text-gray-200 mb-1">Marinduque State University</p>
+            <p className="text-md text-gray-400">Graduated:2025 </p>
+            {/* Optional: honors/awards */}
           </div>
-
-          {/* Professional Certifications */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300">
-            <div className="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-white mb-4">Certifications</h3>
-            <div className="space-y-3">
-              <div className="text-gray-300">
-                <p className="font-semibold text-pink-400">ISTQB Certified Tester</p>
-                <p className="text-sm">Foundation Level</p>
-                <p className="text-sm">2023</p>
-              </div>
-              <div className="text-gray-300">
-                <p className="font-semibold text-pink-400">Selenium WebDriver</p>
-                <p className="text-sm">Advanced Automation</p>
-                <p className="text-sm">2022</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Skills & Technologies */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300">
-            <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-white mb-4">Technical Skills</h3>
-            <div className="space-y-3">
-              <div>
-                <div className="flex justify-between text-sm text-gray-300 mb-1">
-                  <span>Manual Testing</span>
-                  <span>95%</span>
+          {/* Certificates Gallery */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-3">Relevant Certificates</h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {CERTIFICATES.map(cert => (
+                <div key={cert.title} className="bg-white/10 rounded-xl p-2 flex flex-col items-center gap-2 shadow hover:shadow-xl transition-all duration-300">
+                  <div className="w-20 h-20 flex items-center justify-center bg-white/20 rounded-lg overflow-hidden">
+                    {cert.type === 'pdf' ? (
+                      <Document file={cert.file} loading={<div className='text-xs text-gray-400'>Loading...</div>}>
+                        <Page pageNumber={1} width={60} renderTextLayer={false} renderAnnotationLayer={false} />
+                      </Document>
+                    ) : (
+                      <img src={cert.file} alt={cert.title} className="object-contain h-full w-full" />
+                    )}
+                  </div>
+                  <div className="text-xs text-white text-center font-semibold line-clamp-2">{cert.title}</div>
+                  <div className="text-[10px] text-gray-400 text-center">{cert.provider} <br /> {cert.date}</div>
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style={{width: '95%'}}></div>
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-sm text-gray-300 mb-1">
-                  <span>Automated Testing</span>
-                  <span>90%</span>
-                </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style={{width: '90%'}}></div>
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-sm text-gray-300 mb-1">
-                  <span>React/JavaScript</span>
-                  <span>85%</span>
-                </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style={{width: '85%'}}></div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import CarouselSlider from '../components/CarouselSlider';
-
-import sampleImage from '../assets/images/DONNA.jpg';
+import { Document, Page, pdfjs } from 'react-pdf';
+// PDF imports
 import pdf1 from '../assets/pdf/microsoft productivity tools.pdf';
 import pdf2 from '../assets/pdf/Programming for Intermediate Users Using Python.pdf';
 import pdf3 from '../assets/pdf/Basic level of software enginnering.pdf';
@@ -11,254 +10,65 @@ import pdf6 from '../assets/pdf/MA. DONNA D. FIDELINO  Certificate of Participat
 import pdf7 from '../assets/pdf/Ma. Donna D. Fidelino (1).pdf';
 import pdf8 from '../assets/pdf/MA. DONNA D. FIDELINO - Basic Photography Techniques Cert of Participation(sgd) (1).pdf';
 import pdf9 from '../assets/pdf/WOPS_MA. DONNA D. FIDELINO.pdf';
+import pdf10 from '../assets/pdf/Coursera 23PXHPVJ454H.pdf';
+import pdf11 from '../assets/pdf/Cybersecurity Policy  Foundations.pdf';
+import pdf12 from '../assets/pdf/excel.pdf';
+import pdf13 from '../assets/pdf/Google Sheets.pdf';
+import pdf14 from '../assets/pdf/The foundation of online Teaching.pdf';
+import pdf15 from '../assets/pdf/CISCO1.pdf';
+import pdf16 from '../assets/pdf/CISCO2.pdf';
+import pdf17 from '../assets/pdf/_certificate_fidelino-madonna-marsu-edu-ph_a7dd6698-8947-4b13-a10a-2802d89d419d.pdf';
+import pdf18 from '../assets/pdf/Introduction_to_Cybersecurity_certificate_madonnafidelino0119-gmail-com_cdf8d3de-224c-45ed-8e1b-ec821a84bd38.pdf';
+// Example image import (add your image certificates here)
+// import img1 from '../assets/img/certificate1.jpg';
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
+const CERTIFICATES = [
+  { title: 'Microsoft Productivity Tools', provider: 'DICT', topic: 'Tools & Platforms', date: '2022', file: pdf1, type: 'pdf' },
+  { title: 'Programming for Intermediate Users Using Python', provider: 'DICT', topic: 'Web Development', date: '2022', file: pdf2, type: 'pdf' },
+  { title: 'Basic Level of Software Engineering', provider: 'School/University', topic: 'Software Testing', date: '2022', file: pdf3, type: 'pdf' },
+  { title: 'Figma 101 P1 Cert of Participation', provider: 'DICT', topic: 'Web Development', date: '2023', file: pdf4, type: 'pdf' },
+  { title: 'Figma 101 P2 Cert of Participation', provider: 'DICT', topic: 'Web Development', date: '2023', file: pdf5, type: 'pdf' },
+  { title: 'Certificate of Participation', provider: 'School/University', topic: 'General IT / Seminars', date: '2022', file: pdf6, type: 'pdf' },
+  { title: 'Ma. Donna D. Fidelino (1)', provider: 'School/University', topic: 'General IT / Seminars', date: '2022', file: pdf7, type: 'pdf' },
+  { title: 'Basic Photography Techniques Cert of Participation', provider: 'School/University', topic: 'General IT / Seminars', date: '2022', file: pdf8, type: 'pdf' },
+  { title: 'WOPS', provider: 'School/University', topic: 'General IT / Seminars', date: '2022', file: pdf9, type: 'pdf' },
+  { title: 'Coursera Certificate', provider: 'Coursera', topic: 'Cybersecurity', date: '2023', file: pdf10, type: 'pdf' },
+  { title: 'Cybersecurity Policy Foundations', provider: 'DICT', topic: 'Cybersecurity', date: '2023', file: pdf11, type: 'pdf' },
+  { title: 'Excel', provider: 'School/University', topic: 'Tools & Platforms', date: '2022', file: pdf12, type: 'pdf' },
+  { title: 'Google Sheets', provider: 'School/University', topic: 'Tools & Platforms', date: '2022', file: pdf13, type: 'pdf' },
+  { title: 'The Foundation of Online Teaching', provider: 'School/University', topic: 'General IT / Seminars', date: '2022', file: pdf14, type: 'pdf' },
+  { title: 'CISCO1', provider: 'Cisco', topic: 'General IT / Seminars', date: '2022', file: pdf15, type: 'pdf' },
+  { title: 'CISCO2', provider: 'Cisco', topic: 'General IT / Seminars', date: '2022', file: pdf16, type: 'pdf' },
+  { title: 'Certificate (fidelino-madonna-marsu)', provider: 'School/University', topic: 'General IT / Seminars', date: '2022', file: pdf17, type: 'pdf' },
+  { title: 'Introduction to Cybersecurity', provider: 'Cisco', topic: 'Cybersecurity', date: '2023', file: pdf18, type: 'pdf' },
+  // Example image certificate:
+  // { title: 'Web Dev Bootcamp', provider: 'Udemy', topic: 'Web Development', date: '2021', file: img1, type: 'image' },
+];
+
+const PROVIDERS = Array.from(new Set(CERTIFICATES.map(c => c.provider)));
+const TOPICS = Array.from(new Set(CERTIFICATES.map(c => c.topic)));
 
 const CertificatesSection = () => {
+  const [selectedProvider, setSelectedProvider] = useState('All');
+  const [selectedTopic, setSelectedTopic] = useState('All');
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [modalCert, setModalCert] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(6);
 
-  const certificates = [
-    {
-      id: 1,
-      title: "ISTQB Foundation Level",
-      provider: "International Software Testing Qualifications Board",
-      description: "Comprehensive certification covering fundamental testing concepts, methodologies, and best practices in software testing.",
-      issuedDate: "December 2023",
-      validUntil: "December 2026",
-      category: "Testing & QA",
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-      gradient: "from-purple-500 to-pink-500",
-      tags: ["Testing", "ISTQB", "Foundation"],
-      image: sampleImage
-    },
-    {
-      id: 2,
-      title: "Selenium WebDriver Advanced",
-      provider: "Selenium Certification Program",
-      description: "Advanced automation testing certification covering Selenium WebDriver, TestNG, and comprehensive automation frameworks.",
-      issuedDate: "June 2022",
-      validUntil: "June 2025",
-      category: "Automation",
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-      ),
-      gradient: "from-blue-500 to-purple-500",
-      tags: ["Selenium", "Automation", "Java"],
-      image: sampleImage
-    },
-    {
-      id: 3,
-      title: "React Development",
-      provider: "Meta (Facebook)",
-      description: "Modern React development certification covering hooks, context, advanced patterns, and best practices.",
-      issuedDate: "March 2023",
-      validUntil: "March 2026",
-      category: "Frontend Development",
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-      gradient: "from-green-500 to-blue-500",
-      tags: ["React", "JavaScript", "Frontend"],
-      image: sampleImage
-    },
-    {
-      id: 4,
-      title: "AWS Certified Cloud Practitioner",
-      provider: "Amazon Web Services",
-      description: "Cloud computing fundamentals and AWS services overview for modern application deployment and management.",
-      issuedDate: "September 2023",
-      validUntil: "September 2026",
-      category: "Cloud Computing",
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-        </svg>
-      ),
-      gradient: "from-orange-500 to-yellow-500",
-      tags: ["AWS", "Cloud", "DevOps"],
-      image: sampleImage
-    },
-    {
-      id: 5,
-      title: "Postman API Testing",
-      provider: "Postman",
-      description: "Comprehensive API testing and automation using Postman, including collections, environments, and CI/CD integration.",
-      issuedDate: "January 2023",
-      validUntil: "January 2026",
-      category: "API Testing",
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      ),
-      gradient: "from-red-500 to-orange-500",
-      tags: ["Postman", "API", "Testing"],
-      image: sampleImage
-    },
-    {
-      id: 6,
-      title: "Scrum Master Certified",
-      provider: "Scrum Alliance",
-      description: "Agile project management certification covering Scrum methodology, team facilitation, and sprint management.",
-      issuedDate: "November 2022",
-      validUntil: "November 2025",
-      category: "Project Management",
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-        </svg>
-      ),
-      gradient: "from-indigo-500 to-purple-500",
-      tags: ["Scrum", "Agile", "Management"],
-      image: sampleImage
-    }
-  ];
+  // Filter logic
+  const filtered = CERTIFICATES.filter(c =>
+    (selectedProvider === 'All' || c.provider === selectedProvider) &&
+    (selectedTopic === 'All' || c.topic === selectedTopic)
+  );
 
-  const handleViewCertificate = (certificateId) => {
-    const cert = certificates.find(c => c.id === certificateId);
-    setSelectedCertificate(cert);
+  // Modal open/close
+  const openModal = cert => {
+    setModalCert(cert);
     setModalOpen(true);
   };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setSelectedCertificate(null);
-  };
-
-  // Custom certificate cards
-  const certificateCards = certificates.map((certificate) => (
-    <div
-      key={certificate.id}
-      className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl h-full transform hover:-translate-y-2"
-    >
-      {/* Animated Badge/Seal */}
-      <div className="absolute top-4 left-4 z-20 animate-float">
-        <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold rounded-full shadow-lg animate-pulse-glow">
-          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-          Verified
-        </span>
-      </div>
-      {/* Certificate Header */}
-      <div className={`bg-gradient-to-r ${certificate.gradient} p-6 relative overflow-hidden`}>
-        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-110 transition-transform duration-500"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12 group-hover:scale-110 transition-transform duration-500"></div>
-        <div className="relative z-10 flex items-center justify-between">
-          <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
-            <div className="text-white group-hover:rotate-12 transition-transform duration-300">
-              {certificate.icon}
-            </div>
-          </div>
-          <div className="text-right">
-            <div className="text-white/80 text-sm font-medium">{certificate.category}</div>
-            <div className="text-white text-xs">Valid until {certificate.validUntil}</div>
-          </div>
-        </div>
-      </div>
-      {/* Certificate Content */}
-      <div className="p-6 space-y-4 flex flex-col h-full">
-        <div className="flex-grow">
-          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
-            {certificate.title}
-          </h3>
-          <p className="text-purple-300 font-medium text-sm mb-3">
-            {certificate.provider}
-          </p>
-          <p className="text-gray-300 text-sm leading-relaxed">
-            {certificate.description}
-          </p>
-        </div>
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 overflow-x-auto">
-          {certificate.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 bg-white/10 text-white/80 text-xs rounded-full border border-white/20 group-hover:bg-purple-500/20 group-hover:border-purple-400/50 transition-all duration-300"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        {/* Certificate Details */}
-        <div className="pt-4 border-t border-white/10">
-          <div className="flex justify-between items-center text-sm">
-            <div>
-              <span className="text-gray-400">Issued:</span>
-              <span className="text-white ml-1">{certificate.issuedDate}</span>
-            </div>
-            <button
-              onClick={() => handleViewCertificate(certificate.id)}
-              className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-medium rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25 group-hover:shadow-xl"
-            >
-              View Certificate
-            </button>
-          </div>
-        </div>
-      </div>
-      {/* Enhanced Hover Effect Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none"></div>
-      {/* Glow Effect */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none blur-xl -z-10"></div>
-    </div>
-  ));
-
-  const truncateFilename = (filename, maxLength) => {
-    if (filename.length <= maxLength) return filename;
-    return filename.substring(0, maxLength) + '...';
-  };
-
-  const pdfFiles = [
-    { filename: 'Basic level of software enginnering.pdf', url: pdf1 },
-    { filename: 'Programming for Intermediate Users Using Python.pdf', url: pdf2 },
-    { filename: 'microsoft productivity tools.pdf', url: pdf3 },
-    { filename: 'Figma 101 P1 Cert of Participation(sgd) (1).pdf', url: pdf4 },
-    { filename: 'Figma 101 P2 Cert of Participation(sgd).pdf', url: pdf5 },
-    { filename: 'Certificate of Participation.pdf', url: pdf6 },
-    { filename: ' (1).pdf', url: pdf7 },
-    { filename: ' Basic Photography Techniques Cert of Participation(sgd) (1).pdf', url: pdf8 },
-    
-  ].sort((a, b) => a.filename.localeCompare(b.filename));
-
-  const pdfCards = pdfFiles.map((pdf) => (
-    <div
-      key={pdf.filename}
-      className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl h-full flex flex-col"
-    >
-      <div className="p-6 pb-2 flex flex-col items-center">
-        <h3 className="text-lg font-bold text-white text-center mb-2 group-hover:text-purple-400 transition-colors duration-300">
-          {truncateFilename(pdf.filename, 40)}
-        </h3>
-      </div>
-      <div className="flex-1 flex items-center justify-center px-4 pb-4">
-        <iframe
-          src={pdf.url + '#toolbar=0&navpanes=0&scrollbar=0&page=1'}
-          title={pdf.filename}
-          className="w-full h-48 rounded-lg shadow-md border border-white/10 bg-white/10"
-          loading="lazy"
-        />
-      </div>
-      <div className="p-6 pt-0 flex justify-center">
-        <a
-          href={pdf.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400/60"
-        >
-          View Full Certificate
-        </a>
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none"></div>
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none blur-xl -z-10"></div>
-    </div>
-  ));
+  const closeModal = () => setModalOpen(false);
 
   return (
     <section id="certificates" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
@@ -266,83 +76,120 @@ const CertificatesSection = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center gradient-text">
           Professional Certificates
         </h2>
-        {/* Carousel for custom certificates */}
-        <CarouselSlider
-          items={certificateCards}
-          title="Professional Certificates"
-          subtitle="Continuous learning and professional development are key to delivering exceptional results. These certifications validate my expertise and commitment to staying current with industry best practices."
-          autoPlay={true}
-          autoPlayInterval={4000}
-          showDots={true}
-          showArrows={true}
-          itemsPerView={3}
-          className="mb-16"
-        />
-        {/* Carousel for PDF certificates */}
-        <CarouselSlider
-          items={pdfCards}
-          title="PDF Certificates"
-          subtitle="Official PDF certificates with embedded previews. Click 'View Full Certificate' to see the complete document."
-          autoPlay={false}
-          showDots={true}
-          showArrows={true}
-          itemsPerView={3}
-          className="mb-16"
-        />
+        {/* Provider Tabs */}
+        <div className="flex flex-wrap gap-4 justify-center mb-6">
+          <button
+            onClick={() => { setSelectedProvider('All'); setSelectedTopic('All'); setVisibleCount(6); }}
+            className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedProvider === 'All' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' : 'bg-white/10 text-white hover:bg-purple-500/20'}`}
+          >
+            All
+          </button>
+          {PROVIDERS.map(provider => (
+            <button
+              key={provider}
+              onClick={() => { setSelectedProvider(provider); setSelectedTopic('All'); setVisibleCount(6); }}
+              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedProvider === provider ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' : 'bg-white/10 text-white hover:bg-purple-500/20'}`}
+            >
+              {provider}
+            </button>
+          ))}
+        </div>
+        {/* Topic Filter */}
+        <div className="flex flex-wrap gap-2 justify-center mb-8">
+          <button
+            onClick={() => { setSelectedTopic('All'); setVisibleCount(6); }}
+            className={`px-4 py-1 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedTopic === 'All' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow' : 'bg-white/10 text-white hover:bg-purple-500/20'}`}
+          >
+            All
+          </button>
+          {TOPICS.map(topic => (
+            <button
+              key={topic}
+              onClick={() => { setSelectedTopic(topic); setVisibleCount(6); }}
+              className={`px-4 py-1 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedTopic === topic ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow' : 'bg-white/10 text-white hover:bg-purple-500/20'}`}
+            >
+              {topic}
+            </button>
+          ))}
+        </div>
+        {/* Certificates Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+          {filtered.slice(0, visibleCount).map(cert => (
+            <button
+              key={cert.title + cert.date}
+              onClick={() => openModal(cert)}
+              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl h-full flex flex-col cursor-pointer focus:outline-none"
+              tabIndex={0}
+              aria-label={`Preview certificate: ${cert.title}`}
+            >
+              <div className="w-full h-40 bg-white/10 flex items-center justify-center overflow-hidden">
+                {cert.type === 'pdf' ? (
+                  <Document file={cert.file} loading={<div className="text-gray-400">Loading...</div>}>
+                    <Page pageNumber={1} width={250} renderTextLayer={false} renderAnnotationLayer={false} />
+                  </Document>
+                ) : (
+                  <img src={cert.file} alt={cert.title} className="object-contain h-full w-full" />
+                )}
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                  {cert.title}
+                </h3>
+                <p className="text-gray-400 text-sm mb-2">{cert.date}</p>
+                <p className="text-purple-300 text-xs font-medium mb-2">{cert.topic}</p>
+                <p className="text-gray-300 text-xs">{cert.provider}</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none blur-xl -z-10"></div>
+            </button>
+          ))}
+        </div>
+        {/* Load More Button */}
+        {filtered.length > visibleCount && (
+          <div className="flex justify-center mb-8">
+            <button
+              onClick={() => setVisibleCount(v => v + 6)}
+              className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg"
+            >
+              Load More
+            </button>
+          </div>
+        )}
         {/* Modal Preview */}
-        {modalOpen && selectedCertificate && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
-            <div className="bg-slate-900 rounded-2xl shadow-2xl max-w-lg w-full p-8 relative border border-purple-500/30 animate-slide-in">
+        {modalOpen && modalCert && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+            <div className="bg-slate-900 rounded-2xl p-6 max-w-3xl w-full relative shadow-2xl">
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 text-white bg-purple-500/20 hover:bg-pink-500/30 rounded-full p-2 transition-all duration-300"
-                aria-label="Close"
+                className="absolute top-4 right-4 text-white bg-pink-500/80 hover:bg-pink-600 rounded-full p-2 focus:outline-none"
+                aria-label="Close preview"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                &times;
               </button>
               <div className="flex flex-col items-center">
-                <img src={selectedCertificate.image} alt={selectedCertificate.title} className="w-32 h-32 object-cover rounded-xl mb-4 shadow-lg border-4 border-white/10" />
-                <h3 className="text-2xl font-bold text-white mb-2 gradient-text">{selectedCertificate.title}</h3>
-                <p className="text-purple-300 font-medium text-sm mb-2">{selectedCertificate.provider}</p>
-                <p className="text-gray-300 text-sm mb-4 text-center">{selectedCertificate.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {selectedCertificate.tags.map((tag, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-white/10 text-white/80 text-xs rounded-full border border-white/20">
-                      {tag}
-                    </span>
-                  ))}
+                <h3 className="text-xl font-bold text-white mb-2">{modalCert.title}</h3>
+                <p className="text-gray-400 text-sm mb-2">{modalCert.provider} &bull; {modalCert.topic} &bull; {modalCert.date}</p>
+                <div className="w-full flex justify-center items-center my-4">
+                  {modalCert.type === 'pdf' ? (
+                    <Document file={modalCert.file} loading={<div className="text-gray-400">Loading...</div>}>
+                      <Page pageNumber={1} width={500} renderTextLayer={false} renderAnnotationLayer={false} />
+                    </Document>
+                  ) : (
+                    <img src={modalCert.file} alt={modalCert.title} className="object-contain max-h-[60vh] w-auto" />
+                  )}
                 </div>
-                <div className="flex justify-between w-full text-sm mb-2">
-                  <span className="text-gray-400">Issued: <span className="text-white">{selectedCertificate.issuedDate}</span></span>
-                  <span className="text-gray-400">Valid until: <span className="text-white">{selectedCertificate.validUntil}</span></span>
-                </div>
-                <button
-                  onClick={closeModal}
-                  className="mt-4 px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg"
+                <a
+                  href={modalCert.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold shadow hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
                 >
-                  Close
-                </button>
+                  View Full Certificate
+                </a>
               </div>
             </div>
           </div>
         )}
-        {/* Call to Action */}
-        <div className="text-center">
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Continuously Learning & Growing
-            </h3>
-            <p className="text-gray-300 mb-6">
-              I'm always pursuing new certifications and learning opportunities to enhance my skills and stay ahead of industry trends.
-            </p>
-            <button
-              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              Let's Discuss Your Project
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );
