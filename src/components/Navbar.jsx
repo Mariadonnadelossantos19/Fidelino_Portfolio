@@ -58,6 +58,8 @@ const Navbar = () => {
     { id: 'projects', label: 'Projects', icon: '💼' },
     { id: 'certificates', label: 'Certificates', icon: '🏆' },
     { id: 'contact', label: 'Contact', icon: '📧' },
+    { id: 'Experience', label: 'Work', icon: '📧' },
+
   ];
 
   return (

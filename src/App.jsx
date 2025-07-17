@@ -9,6 +9,7 @@ import ProjectsSection from './pages/ProjectsSection'
 import ContactSection from './pages/ContactSection'
 import Footer from './pages/Footer'
 import SocialMediaBar from './components/SocialMediaBar'
+import WorkExperience from './pages/WorkExperience'
 
 
 function App() {
@@ -59,6 +60,8 @@ function App() {
       <AboutSection />
       {/* Education Section */}
       <EducationSection />
+      {/* Certificates Section */}
+      <WorkExperience />
       {/* Certificates Section */}
       <CertificatesSection />
       {/* Projects Section */}
