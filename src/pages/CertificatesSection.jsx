@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 // PDF imports
-import pdf1 from '../assets/pdf/microsoft productivity tools.pdf';
+import pdf1 from '../assets/pdf/microsoft_productivity_tools.pdf';
 import pdf2 from '../assets/pdf/Programming for Intermediate Users Using Python.pdf';
 import pdf3 from '../assets/pdf/Basic level of software enginnering.pdf';
 import pdf4 from '../assets/pdf/MA. DONNA D. FIDELINO  - Figma 101 P1 Cert of Participation(sgd) (1).pdf';
@@ -13,7 +13,7 @@ import pdf9 from '../assets/pdf/WOPS_MA. DONNA D. FIDELINO.pdf';
 import pdf10 from '../assets/pdf/Coursera 23PXHPVJ454H.pdf';
 import pdf11 from '../assets/pdf/Cybersecurity Policy  Foundations.pdf';
 import pdf12 from '../assets/pdf/excel.pdf';
-import pdf13 from '../assets/pdf/Google Sheets.pdf';
+import pdf13 from '../assets/pdf/Google_Sheets.pdf';
 import pdf14 from '../assets/pdf/The foundation of online Teaching.pdf';
 import pdf15 from '../assets/pdf/CISCO1.pdf';
 import pdf16 from '../assets/pdf/CISCO2.pdf';

@@ -141,3 +141,52 @@ html {
     background-position: 100% 50%;
   }
 }
+
+/* --- Custom Section Animations --- */
+.section-animate {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.section-animate.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+.section-fade {
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
+}
+.section-fade.in-view {
+  opacity: 1;
+}
+
+.section-slide-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s, transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.section-slide-left.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+.section-slide-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s, transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.section-slide-right.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+.section-zoom {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.8s, transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.section-zoom.in-view {
+  opacity: 1;
+  transform: scale(1);
+}

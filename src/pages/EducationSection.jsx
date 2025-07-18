@@ -10,6 +10,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 const CERTIFICATES = [
   {
+    title: 'With Distinction',
+    provider: 'College of Information and Computing Sciences',
+    date: '2025',
+    file: istqbPDF,
+    type: 'pdf',
+  },
+  {
     title: 'Best Intern Award',
     provider: 'College of Information and Computing Sciences',
     date: '2025',
@@ -30,13 +37,7 @@ const CERTIFICATES = [
     file: reactPDF,
     type: 'pdf',
   },
-  {
-    title: 'Collegiate Sports Achievement Award',
-    provider: 'College of Information and Technology',
-    date: '2023',
-    file: jsPDF,
-    type: 'pdf',
-  },
+  
 ];
 
 const EducationSection = () => {

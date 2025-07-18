@@ -5,7 +5,7 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: "E-commerce QA Automation",
+      title: "INTERNAL AUDIT MANAGEMENT SYSTEM (IAMS)",
       description: "Comprehensive automated testing suite for an e-commerce platform, covering user flows, payment processing, and inventory management.",
       technologies: ["Selenium", "Java", "TestNG"],
       icon: (
@@ -17,7 +17,7 @@ const ProjectsSection = () => {
     },
     {
       id: 2,
-      title: "React Portfolio Website",
+      title: "Information Systems Strategic Plan (ISSP)",
       description: "Modern, responsive portfolio website built with React and Tailwind CSS, featuring smooth animations and optimal user experience.",
       technologies: ["React", "Tailwind CSS", "Vite"],
       icon: (
