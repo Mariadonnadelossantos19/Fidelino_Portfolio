@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
+
 // PDF imports
 import pdf1 from '../assets/pdf/microsoft_productivity_tools.pdf';
 import pdf2 from '../assets/pdf/Programming for Intermediate Users Using Python.pdf';
@@ -19,10 +19,6 @@ import pdf15 from '../assets/pdf/CISCO1.pdf';
 import pdf16 from '../assets/pdf/CISCO2.pdf';
 import pdf17 from '../assets/pdf/_certificate_fidelino-madonna-marsu-edu-ph_a7dd6698-8947-4b13-a10a-2802d89d419d.pdf';
 import pdf18 from '../assets/pdf/Introduction_to_Cybersecurity_certificate_madonnafidelino0119-gmail-com_cdf8d3de-224c-45ed-8e1b-ec821a84bd38.pdf';
-// Example image import (add your image certificates here)
-// import img1 from '../assets/img/certificate1.jpg';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const CERTIFICATES = [
   { title: 'Microsoft Productivity Tools', provider: 'DICT', topic: 'Tools & Platforms', date: '2022', file: pdf1, type: 'pdf' },
@@ -43,8 +39,6 @@ const CERTIFICATES = [
   { title: 'CISCO2', provider: 'Cisco', topic: 'General IT / Seminars', date: '2022', file: pdf16, type: 'pdf' },
   { title: 'Certificate (fidelino-madonna-marsu)', provider: 'School/University', topic: 'General IT / Seminars', date: '2022', file: pdf17, type: 'pdf' },
   { title: 'Introduction to Cybersecurity', provider: 'Cisco', topic: 'Cybersecurity', date: '2023', file: pdf18, type: 'pdf' },
-  // Example image certificate:
-  // { title: 'Web Dev Bootcamp', provider: 'Udemy', topic: 'Web Development', date: '2021', file: img1, type: 'image' },
 ];
 
 const PROVIDERS = Array.from(new Set(CERTIFICATES.map(c => c.provider)));
@@ -56,6 +50,7 @@ const CertificatesSection = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalCert, setModalCert] = useState(null);
   const [visibleCount, setVisibleCount] = useState(6);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Filter logic
   const filtered = CERTIFICATES.filter(c =>
@@ -67,8 +62,17 @@ const CertificatesSection = () => {
   const openModal = cert => {
     setModalCert(cert);
     setModalOpen(true);
+    setIsFullscreen(false);
   };
-  const closeModal = () => setModalOpen(false);
+  const closeModal = () => {
+    setModalOpen(false);
+    setIsFullscreen(false);
+  };
+  
+  // Fullscreen toggle
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
 
   return (
     <section id="certificates" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
@@ -114,9 +118,9 @@ const CertificatesSection = () => {
         </div>
         {/* Certificates Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {filtered.slice(0, visibleCount).map(cert => (
+          {filtered.slice(0, visibleCount).map((cert, index) => (
             <button
-              key={cert.title + cert.date}
+              key={`${cert.title}-${cert.date}-${index}`}
               onClick={() => openModal(cert)}
               className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl h-full flex flex-col cursor-pointer focus:outline-none"
               tabIndex={0}
@@ -124,9 +128,12 @@ const CertificatesSection = () => {
             >
               <div className="w-full h-40 bg-white/10 flex items-center justify-center overflow-hidden">
                 {cert.type === 'pdf' ? (
-                  <Document file={cert.file} loading={<div className="text-gray-400">Loading...</div>}>
-                    <Page pageNumber={1} width={250} renderTextLayer={false} renderAnnotationLayer={false} />
-                  </Document>
+                  <iframe
+                    src={cert.file}
+                    className="w-full h-full border-0"
+                    title={cert.title}
+                    onError={() => console.log('PDF load error')}
+                  />
                 ) : (
                   <img src={cert.file} alt={cert.title} className="object-contain h-full w-full" />
                 )}
@@ -171,9 +178,12 @@ const CertificatesSection = () => {
                 <p className="text-gray-400 text-sm mb-2">{modalCert.provider} &bull; {modalCert.topic} &bull; {modalCert.date}</p>
                 <div className="w-full flex justify-center items-center my-4">
                   {modalCert.type === 'pdf' ? (
-                    <Document file={modalCert.file} loading={<div className="text-gray-400">Loading...</div>}>
-                      <Page pageNumber={1} width={500} renderTextLayer={false} renderAnnotationLayer={false} />
-                    </Document>
+                    <iframe
+                      src={modalCert.file}
+                      className="w-full h-[60vh] border-0 rounded-lg"
+                      title={modalCert.title}
+                      onError={() => console.log('Modal PDF load error')}
+                    />
                   ) : (
                     <img src={modalCert.file} alt={modalCert.title} className="object-contain max-h-[60vh] w-auto" />
                   )}

@@ -134,7 +134,7 @@ const WorkExperience = () => {
                   <p className="text-gray-400 text-sm mb-4">{exp.startDate} – {exp.endDate}</p>
                   <ul className="list-disc list-inside space-y-2 text-gray-200 text-base">
                     {exp.description.map((item, i) => (
-                      <motion.li key={i} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.08 }}>{item}</motion.li>
+                      <motion.li key={`${exp.jobTitle}-${i}-${item.substring(0, 20)}`} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.08 }}>{item}</motion.li>
                     ))}
                   </ul>
                 </div>

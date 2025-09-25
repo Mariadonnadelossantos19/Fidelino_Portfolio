@@ -66,8 +66,8 @@ const EducationSection = () => {
           <div>
             <h4 className="text-lg font-semibold text-white mb-3">Relevant Certificates</h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {CERTIFICATES.map(cert => (
-                <div key={cert.title} className="bg-white/10 rounded-xl p-2 flex flex-col items-center gap-2 shadow hover:shadow-xl transition-all duration-300">
+              {CERTIFICATES.map((cert, index) => (
+                <div key={`${cert.title}-${cert.date}-${index}`} className="bg-white/10 rounded-xl p-2 flex flex-col items-center gap-2 shadow hover:shadow-xl transition-all duration-300">
                   <div className="w-20 h-20 flex items-center justify-center bg-white/20 rounded-lg overflow-hidden">
                     {cert.type === 'pdf' ? (
                       <Document file={cert.file} loading={<div className='text-xs text-gray-400'>Loading...</div>}>
