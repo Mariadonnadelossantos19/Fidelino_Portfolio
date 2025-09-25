@@ -22,7 +22,7 @@ const socials = [
   },
   {
     name: 'GitHub',
-    url: 'https://github.com/',
+    url: 'https://github.com/Mariadonnadelossantos19',
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <circle cx="12" cy="12" r="10" fill="url(#github-gradient)" />
