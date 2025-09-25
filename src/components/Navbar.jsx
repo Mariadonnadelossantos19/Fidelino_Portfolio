@@ -68,8 +68,8 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-black/20 backdrop-blur-2xl shadow-2xl border-b border-white/10' 
+      isScrolled 
+          ? 'bg-black/80 backdrop-blur-2xl shadow-2xl border-b border-cyan-500/20' 
           : 'bg-transparent'
       }`}
     >
@@ -82,24 +82,24 @@ const Navbar = () => {
             className="flex items-center space-x-3 cursor-pointer group" 
             onClick={() => scrollToSection('home')}
           >
-            <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-purple-500/30 transition-all duration-300">
-                <span className="text-white font-bold text-sm">MF</span>
-              </div>
+              <div className="relative">
+              <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-cyan-500/30 transition-all duration-300 border border-cyan-500/20">
+                <span className="text-black font-bold text-sm">MF</span>
+                </div>
               <motion.div 
-                className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-md"
+                className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-md"
                 whileHover={{ scale: 1.2 }}
               />
-            </div>
-            <div className="flex flex-col">
+              </div>
+              <div className="flex flex-col">
               <motion.span 
-                className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+                className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent font-mono"
                 whileHover={{ scale: 1.02 }}
               >
-                Fidelino
+                  Fidelino
               </motion.span>
-              <span className="text-xs text-gray-400 font-medium">QA Engineer</span>
-            </div>
+              <span className="text-xs text-cyan-400 font-medium font-mono">QA Engineer</span>
+              </div>
           </motion.div>
 
           {/* Minimalist Desktop Menu */}
@@ -114,10 +114,10 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 group ${
+                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group font-mono ${
                     activeSection === item.id
-                      ? 'text-white bg-white/10 backdrop-blur-sm border border-white/20'
-                      : 'text-gray-400 hover:text-white hover:bg-white/5 backdrop-blur-sm'
+                      ? 'text-cyan-400 bg-cyan-500/10 backdrop-blur-sm border border-cyan-500/30 shadow-lg shadow-cyan-500/20'
+                      : 'text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/5 backdrop-blur-sm border border-transparent hover:border-cyan-500/20'
                   }`}
                 >
                   <span className="text-sm group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
@@ -127,7 +127,7 @@ const Navbar = () => {
                   {activeSection === item.id && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-400/30"
+                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg border border-cyan-400/30"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
@@ -225,15 +225,15 @@ const Navbar = () => {
             <div className="px-6 py-4 space-y-1">
               {menuItems.map((item, index) => (
                 <motion.button
-                  key={item.id}
+              key={item.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => scrollToSection(item.id)}
+              onClick={() => scrollToSection(item.id)}
                   className={`flex items-center space-x-3 w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    activeSection === item.id
+                activeSection === item.id
                       ? 'text-white bg-white/10 backdrop-blur-sm'
                       : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }`}
@@ -241,8 +241,8 @@ const Navbar = () => {
                   <span className="text-lg">{item.icon}</span>
                   <span>{item.label}</span>
                 </motion.button>
-              ))}
-            </div>
+          ))}
+        </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -260,15 +260,15 @@ const Navbar = () => {
             <div className="px-6 py-4 space-y-1">
               {menuItems.slice(4).map((item, index) => (
                 <motion.button
-                  key={item.id}
+              key={item.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => scrollToSection(item.id)}
+              onClick={() => scrollToSection(item.id)}
                   className={`flex items-center space-x-3 w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    activeSection === item.id
+                activeSection === item.id
                       ? 'text-white bg-white/10 backdrop-blur-sm'
                       : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }`}
@@ -276,8 +276,8 @@ const Navbar = () => {
                   <span className="text-lg">{item.icon}</span>
                   <span>{item.label}</span>
                 </motion.button>
-              ))}
-            </div>
+          ))}
+        </div>
           </motion.div>
         )}
       </AnimatePresence>
