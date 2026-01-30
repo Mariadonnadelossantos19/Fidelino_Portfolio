@@ -21,7 +21,7 @@ const Navbar = () => {
   // Handle active section detection
   useEffect(() => {
     const handleScrollSpy = () => {
-      const sections = ['home', 'about', 'education', 'projects', 'certificates', 'contact'];
+      const sections = ['home', 'about', 'education', 'work-experience', 'projects', 'certificates', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -55,13 +55,13 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { id: 'home', label: 'Home',color: 'from-blue-500 to-cyan-500' },
-    { id: 'about', label: 'About Me', color: 'from-purple-500 to-pink-500' },
-    { id: 'education', label: 'Education', color: 'from-green-500 to-emerald-500' },
-    { id: 'projects', label: 'Projects',  color: 'from-orange-500 to-red-500' },
-    { id: 'certificates', label: 'Certificates', color: 'from-yellow-500 to-amber-500' },
-    { id: 'contact', label: 'Contact',  color: 'from-indigo-500 to-purple-500' },
-    { id: 'Experience', label: 'Work',  color: 'from-teal-500 to-blue-500' },
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'education', label: 'Education' },
+    { id: 'work-experience', label: 'Work Experience' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'certificates', label: 'Certificates' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   return (

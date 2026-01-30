@@ -1,171 +1,102 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import donnaImage from '../assets/images/DONNA.jpg'
-import pro1Image from '../assets/images/pro1.JPG'
+import React from 'react';
 
-// Sample data ng work experiences. Palitan mo ito ayon sa iyong aktwal na karanasan.
 const experiences = [
   {
     jobTitle: 'Software Quality Assurance Analyst Intern',
     company: 'League of Developers Initiatives',
     location: 'DOST, MIMAROPA',
-    startDate: 'January 2025',
+    startDate: 'Jan 2025',
     endDate: 'May 2025',
     description: [
-      'Performed both manual and automated testing to ensure the functionality, performance, and reliability of various DOST system',
-      'Developed and executed automated test scripts using Selenium and Python for the DOST Information Systems Strategic Plan(ISSP)',
-      'Conducted end-to-end validation and manual testing of the DOST Internal Audit Management System (IAMS)',
-      'Created new test cases and made the “TestResultsSummary” for the Balik Scientist Program Management System to ensure(BSPMS) thorough test coverage and accurate reporting',
-      'Applied a wide range of testing methodologies including functional testing, regression testing, user acceptance testing (UAT), and cross-browser testing.',
-      'Documented test results, reported bugs, and collaborated with developers to verify fixes and enhance overall software quality.'
-    ],
-    photo: donnaImage
+      'Performed manual and automated testing for DOST systems to ensure functionality, performance, and reliability.',
+      'Developed and executed automated test scripts with Selenium and Python for the Information Systems Strategic Plan (ISSP).',
+      'Conducted end-to-end validation and manual testing of the Internal Audit Management System (IAMS).',
+      'Created test cases and Test Results Summary for the Balik Scientist Program Management System (BSPMS).',
+      'Applied functional, regression, UAT, and cross-browser testing; documented results and collaborated with developers on fixes.'
+    ]
   },
   {
     jobTitle: 'Technical Support',
     company: 'Department of Science and Technology',
     location: 'Marinduque, Philippines',
-    startDate: 'January  2025',
+    startDate: 'Jan 2025',
     endDate: 'May 2025',
     description: [
-      'Nagplano at nagsagawa ng regression at exploratory testing para sa bagong features.',
-      'Gumamit ng JIRA para sa bug tracking at documentation.',
-      'Nag-automate ng test cases gamit ang Cypress at Selenium.',
-      'Nakipag-ugnayan sa cross-functional teams para mapabilis ang release cycle.',
-      'Nakatulong sa pagbuo ng QA best practices sa team.'
-    ],
-    photo: pro1Image
+      'Planned and executed regression and exploratory testing for new features.',
+      'Used JIRA for bug tracking and documentation.',
+      'Automated test cases with Cypress and Selenium.',
+      'Worked with cross-functional teams to support release cycles and QA best practices.'
+    ]
   },
   {
     jobTitle: 'Programmer',
     company: 'Department of Science and Technology',
     location: 'Marinduque, Philippines',
-    startDate: 'January  2025',
+    startDate: 'Jan 2025',
     endDate: 'May 2025',
     description: [
-      'Nagplano at nagsagawa ng regression at exploratory testing para sa bagong features.',
-      'Gumamit ng JIRA para sa bug tracking at documentation.',
-      'Nag-automate ng test cases gamit ang Cypress at Selenium.',
-      'Nakipag-ugnayan sa cross-functional teams para mapabilis ang release cycle.',
-      'Nakatulong sa pagbuo ng QA best practices sa team.'
-    ],
-    photo: pro1Image
+      'Developed and maintained applications in support of DOST programs.',
+      'Collaborated with QA and technical support on testing and documentation.',
+      'Contributed to internal tools and development workflows.'
+    ]
   }
-]
-
-const variants = {
-  enter: (direction) => ({
-    x: direction > 0 ? 300 : -300,
-    opacity: 0,
-    scale: 0.95
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] }
-  },
-  exit: (direction) => ({
-    x: direction < 0 ? 300 : -300,
-    opacity: 0,
-    scale: 0.95,
-    transition: { duration: 0.5 }
-  })
-}
+];
 
 const WorkExperience = () => {
-  const [[index, direction], setIndex] = useState([0, 0]);
-  const exp = experiences[index];
-
-  const paginate = (newDirection) => {
-    setIndex(([prev, _]) => {
-      let next = prev + newDirection;
-      if (next < 0) next = experiences.length - 1;
-      if (next >= experiences.length) next = 0;
-      return [next, newDirection];
-    });
-  };
-
   return (
-    <section id="work-experience" className="py-20 px-4 bg-gradient-to-br from-slate-200 via-purple-100/30 to-slate-200 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-900 transition-colors duration-300">
-      <div className="max-w-2xl mx-auto flex flex-col items-center">
-        <h2 className="text-4xl font-bold text-slate-800 dark:text-white text-center mb-12">
-          Work <span className="bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">Experience</span>
-        </h2>
-        <div className="relative w-full flex items-center justify-center">
-          {/* Left Arrow */}
-          <button
-            onClick={() => paginate(-1)}
-            className="absolute left-0 z-10 bg-slate-200/80 dark:bg-white/10 hover:bg-purple-400/40 dark:hover:bg-purple-400/30 text-slate-700 dark:text-white rounded-full p-3 shadow transition-all duration-300"
-            aria-label="Previous Experience"
-          >
-            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 19l-7-7 7-7"/></svg>
-          </button>
-          {/* Carousel Card */}
-          <div className="w-full max-w-xl">
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={index}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.8}
-                onDragEnd={(e, { offset, velocity }) => {
-                  if (offset.x < -100) paginate(1);
-                  else if (offset.x > 100) paginate(-1);
-                }}
-                className="bg-white/10 rounded-2xl p-8 flex flex-col md:flex-row gap-8 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-grab active:cursor-grabbing"
-                whileHover={{ scale: 1.03, boxShadow: '0 8px 32px 0 rgba(139,92,246,0.15)' }}
-              >
-                {exp.photo && (
-                  <div className="flex-shrink-0 w-40 h-40 rounded-xl overflow-hidden bg-slate-900 border-4 border-purple-400/30">
-                    <img src={exp.photo} alt={exp.jobTitle + ' photo'} className="w-full h-full object-cover" />
-                  </div>
-                )}
-                <div className="flex-1 flex flex-col justify-center">
-                  <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">{exp.jobTitle}</h3>
-                  <p className="text-purple-600 dark:text-purple-300 text-lg font-semibold mb-1">{exp.company}</p>
-                  <p className="text-slate-500 dark:text-gray-400 text-sm mb-1">{exp.location}</p>
-                  <p className="text-slate-500 dark:text-gray-400 text-sm mb-4">{exp.startDate} – {exp.endDate}</p>
-                  <ul className="list-disc list-inside space-y-2 text-slate-600 dark:text-gray-200 text-base">
-                    {exp.description.map((item, i) => (
-                      <motion.li key={`${exp.jobTitle}-${i}-${item.substring(0, 20)}`} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.08 }}>{item}</motion.li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-          {/* Right Arrow */}
-          <button
-            onClick={() => paginate(1)}
-            className="absolute right-0 z-10 bg-slate-200/80 dark:bg-white/10 hover:bg-pink-400/40 dark:hover:bg-pink-400/30 text-slate-700 dark:text-white rounded-full p-3 shadow transition-all duration-300"
-            aria-label="Next Experience"
-          >
-            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 5l7 7-7 7"/></svg>
-          </button>
+    <section id="work-experience" className="py-20 px-4 bg-slate-50/80 dark:bg-zinc-900/50 transition-colors duration-300">
+      <div className="section-container">
+        <div className="text-center mb-14">
+          <p className="text-xs font-semibold tracking-widest uppercase text-teal-600 dark:text-teal-400 mb-3">
+            Experience
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+            Work experience
+          </h2>
+          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">
+            Roles and responsibilities in QA, technical support, and development.
+          </p>
         </div>
-        {/* Carousel Dots */}
-        <div className="flex gap-2 mt-8">
-          {experiences.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setIndex([i, i > index ? 1 : -1])}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${i === index ? 'bg-purple-500 dark:bg-purple-400 scale-125' : 'bg-slate-300 dark:bg-white/20 hover:bg-purple-400 dark:hover:bg-purple-300'}`}
-              aria-label={`Go to experience ${i + 1}`}
-            />
+
+        <div className="max-w-3xl mx-auto space-y-8">
+          {experiences.map((exp, i) => (
+            <article
+              key={`${exp.company}-${exp.jobTitle}-${i}`}
+              className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-zinc-900/80 p-6 md:p-8 shadow-sm dark:shadow-none transition-colors"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
+                    {exp.jobTitle}
+                  </h3>
+                  <p className="text-teal-600 dark:text-teal-400 font-medium mt-0.5">
+                    {exp.company}
+                  </p>
+                </div>
+                <p className="text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                  {exp.startDate} – {exp.endDate}
+                </p>
+              </div>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mb-5">
+                {exp.location}
+              </p>
+              <ul className="list-none space-y-2">
+                {exp.description.map((item, j) => (
+                  <li
+                    key={j}
+                    className="flex gap-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                  >
+                    <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400 mt-1.5" aria-hidden />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default WorkExperience
-
-
+export default WorkExperience;
