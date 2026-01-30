@@ -46,19 +46,19 @@ const InteractiveSkills = () => {
   }, [skills.length]);
 
   return (
-    <div className="py-20 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <div className="py-20 px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-black/50"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5"></div>
+      <div className="absolute inset-0 bg-slate-200/30 dark:bg-black/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-blue-500/10 dark:from-cyan-500/5 dark:via-transparent dark:to-blue-500/5"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-mono">
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6 font-mono">
+            <span className="bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
               Full Stack Skills
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto">
             From frontend to backend, I build complete web applications with modern technologies
           </p>
         </div>
@@ -71,8 +71,8 @@ const InteractiveSkills = () => {
                 key={skill.name}
                 className={`p-6 rounded-lg border-2 transition-all duration-500 cursor-pointer ${
                   activeSkill === index
-                    ? 'border-cyan-500 bg-cyan-500/10 shadow-lg shadow-cyan-500/20'
-                    : 'border-gray-700 bg-gray-800/50 hover:border-cyan-400/50 hover:bg-cyan-500/5'
+                    ? 'border-cyan-500 bg-cyan-500/15 dark:bg-cyan-500/10 shadow-lg shadow-cyan-500/20'
+                    : 'border-slate-300 dark:border-gray-700 bg-slate-100/80 dark:bg-gray-800/50 hover:border-cyan-500/50 dark:hover:border-cyan-400/50 hover:bg-cyan-500/10 dark:hover:bg-cyan-500/5'
                 }`}
                 onClick={() => setActiveSkill(index)}
               >
@@ -89,24 +89,24 @@ const InteractiveSkills = () => {
 
           {/* Active Skill Display */}
           <div className="relative">
-            <div className="bg-black/80 backdrop-blur-sm rounded-lg border border-cyan-500/30 p-8 shadow-2xl">
+            <div className="bg-white/90 dark:bg-black/80 backdrop-blur-sm rounded-lg border border-cyan-500/40 dark:border-cyan-500/30 p-8 shadow-2xl">
               <div className="flex items-center space-x-4 mb-6">
                 <span className="text-4xl">{skills[activeSkill].icon}</span>
                 <div>
-                  <h3 className="text-2xl font-bold text-cyan-400 font-mono">
+                  <h3 className="text-2xl font-bold text-cyan-600 dark:text-cyan-400 font-mono">
                     {skills[activeSkill].name}
                   </h3>
-                  <p className="text-gray-300">{skills[activeSkill].description}</p>
+                  <p className="text-slate-600 dark:text-gray-300">{skills[activeSkill].description}</p>
                 </div>
               </div>
               
               <div className="space-y-3">
-                <h4 className="text-lg font-semibold text-white font-mono">Technologies:</h4>
+                <h4 className="text-lg font-semibold text-slate-800 dark:text-white font-mono">Technologies:</h4>
                 <div className="flex flex-wrap gap-2">
                   {skills[activeSkill].technologies.map((tech, index) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-cyan-500/20 border border-cyan-500/30 rounded-full text-cyan-400 text-sm font-mono hover:bg-cyan-500/30 transition-colors duration-300"
+                      className="px-3 py-1 bg-cyan-500/25 dark:bg-cyan-500/20 border border-cyan-500/40 dark:border-cyan-500/30 rounded-full text-cyan-600 dark:text-cyan-400 text-sm font-mono hover:bg-cyan-500/35 dark:hover:bg-cyan-500/30 transition-colors duration-300"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
                       {tech}

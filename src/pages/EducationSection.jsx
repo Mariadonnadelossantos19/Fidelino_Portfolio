@@ -60,7 +60,7 @@ const EducationSection = () => {
   }, []);
 
   return (
-    <section id="education" className="py-20 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <section id="education" className="py-20 px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Background Graphics */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-32 h-32 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -71,10 +71,10 @@ const EducationSection = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-mono">
-            Education & <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Credentials</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6 font-mono">
+            Education & <span className="bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Credentials</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto">
             Academic excellence and professional achievements
           </p>
         </div>
@@ -105,17 +105,17 @@ const EducationSection = () => {
             </div>
 
             {/* Education Details */}
-            <div className="bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/30 shadow-2xl">
-              <h3 className="text-xl font-bold text-cyan-400 mb-4 font-mono">Academic Background</h3>
+            <div className="bg-white/90 dark:bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/40 dark:border-cyan-500/30 shadow-2xl">
+              <h3 className="text-xl font-bold text-cyan-600 dark:text-cyan-400 mb-4 font-mono">Academic Background</h3>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
                     <span className="text-white text-lg">🎓</span>
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-white font-mono">BS in Information Technology</h4>
-                    <p className="text-gray-300 text-sm">Marinduque State University</p>
-                    <p className="text-cyan-400 text-xs font-mono">Graduated: 2025</p>
+                    <h4 className="text-lg font-bold text-slate-800 dark:text-white font-mono">BS in Information Technology</h4>
+                    <p className="text-slate-600 dark:text-gray-300 text-sm">Marinduque State University</p>
+                    <p className="text-cyan-600 dark:text-cyan-400 text-xs font-mono">Graduated: 2025</p>
                   </div>
                 </div>
               </div>
@@ -124,22 +124,22 @@ const EducationSection = () => {
 
           {/* Right Content - Interactive Certificates */}
           <div className="space-y-6">
-            <div className="bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/30 shadow-2xl">
-              <h3 className="text-xl font-bold text-cyan-400 mb-6 font-mono text-center">
+            <div className="bg-white/90 dark:bg-black/80 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/40 dark:border-cyan-500/30 shadow-2xl">
+              <h3 className="text-xl font-bold text-cyan-600 dark:text-cyan-400 mb-6 font-mono text-center">
                 Awards & Certificates
               </h3>
               
               {/* Certificate Navigation */}
               <div className="flex justify-center mb-6">
-                <div className="flex space-x-1 bg-gray-800/50 rounded-lg p-1">
+                <div className="flex space-x-1 bg-slate-200/80 dark:bg-gray-800/50 rounded-lg p-1">
                   {CERTIFICATES.map((cert, index) => (
                     <button
                       key={index}
                       onClick={() => setActiveCert(index)}
                       className={`px-2 py-1 rounded-md text-xs font-mono transition-all duration-300 ${
                         activeCert === index
-                          ? 'bg-cyan-500 text-black'
-                          : 'text-gray-400 hover:text-cyan-400'
+                          ? 'bg-cyan-500 text-white dark:text-black'
+                          : 'text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400'
                       }`}
                     >
                       {cert.icon}
@@ -156,9 +156,9 @@ const EducationSection = () => {
                       {CERTIFICATES[activeCert].icon}
           </div>
           <div>
-                      <h4 className="text-lg font-bold text-white font-mono">{CERTIFICATES[activeCert].title}</h4>
-                      <p className="text-gray-300 text-sm">{CERTIFICATES[activeCert].provider}</p>
-                      <p className="text-cyan-400 text-xs font-mono">{CERTIFICATES[activeCert].date}</p>
+                      <h4 className="text-lg font-bold text-slate-800 dark:text-white font-mono">{CERTIFICATES[activeCert].title}</h4>
+                      <p className="text-slate-600 dark:text-gray-300 text-sm">{CERTIFICATES[activeCert].provider}</p>
+                      <p className="text-cyan-600 dark:text-cyan-400 text-xs font-mono">{CERTIFICATES[activeCert].date}</p>
                     </div>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ const EducationSection = () => {
                     <div
                       key={index}
                       className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                        index === activeCert ? 'bg-cyan-400' : 'bg-gray-600'
+                        index === activeCert ? 'bg-cyan-500 dark:bg-cyan-400' : 'bg-slate-400 dark:bg-gray-600'
                       }`}
                     />
                   ))}
@@ -182,10 +182,10 @@ const EducationSection = () => {
               {CERTIFICATES.map((cert, index) => (
                 <div
                   key={`${cert.title}-${cert.date}-${index}`}
-                  className={`bg-black/50 backdrop-blur-sm rounded-xl p-3 border transition-all duration-300 cursor-pointer hover:scale-105 ${
+                  className={`bg-white/80 dark:bg-black/50 backdrop-blur-sm rounded-xl p-3 border transition-all duration-300 cursor-pointer hover:scale-105 shadow-lg dark:shadow-none ${
                     activeCert === index
-                      ? 'border-cyan-400/50 shadow-lg shadow-cyan-500/20'
-                      : 'border-gray-700 hover:border-cyan-400/30'
+                      ? 'border-cyan-500/50 dark:border-cyan-400/50 shadow-lg shadow-cyan-500/20'
+                      : 'border-slate-300 dark:border-gray-700 hover:border-cyan-500/40 dark:hover:border-cyan-400/30'
                   }`}
                   onClick={() => setActiveCert(index)}
                 >
@@ -194,8 +194,8 @@ const EducationSection = () => {
                       {cert.icon}
                     </div>
                     <div className="text-center">
-                      <div className="text-xs font-semibold text-white font-mono line-clamp-2">{cert.title}</div>
-                      <div className="text-xs text-gray-400">{cert.date}</div>
+                      <div className="text-xs font-semibold text-slate-800 dark:text-white font-mono line-clamp-2">{cert.title}</div>
+                      <div className="text-xs text-slate-500 dark:text-gray-400">{cert.date}</div>
                     </div>
                   </div>
                 </div>

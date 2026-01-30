@@ -75,9 +75,9 @@ const CertificatesSection = () => {
   };
 
   return (
-    <section id="certificates" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
+    <section id="certificates" className="py-20 px-4 bg-gradient-to-br from-slate-200 via-purple-100/30 to-slate-200 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center gradient-text">
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-10 text-center gradient-text">
           Professional Certificates
         </h2>
         {/* Provider Tabs */}
@@ -92,7 +92,7 @@ const CertificatesSection = () => {
             <button
               key={provider}
               onClick={() => { setSelectedProvider(provider); setSelectedTopic('All'); setVisibleCount(6); }}
-              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedProvider === provider ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' : 'bg-white/10 text-white hover:bg-purple-500/20'}`}
+              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedProvider === provider ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' : 'bg-slate-200/80 dark:bg-white/10 text-slate-800 dark:text-white hover:bg-purple-500/20 dark:hover:bg-purple-500/20'}`}
             >
               {provider}
             </button>
@@ -110,7 +110,7 @@ const CertificatesSection = () => {
             <button
               key={topic}
               onClick={() => { setSelectedTopic(topic); setVisibleCount(6); }}
-              className={`px-4 py-1 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedTopic === topic ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow' : 'bg-white/10 text-white hover:bg-purple-500/20'}`}
+              className={`px-4 py-1 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedTopic === topic ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow' : 'bg-slate-200/80 dark:bg-white/10 text-slate-800 dark:text-white hover:bg-purple-500/20 dark:hover:bg-purple-500/20'}`}
             >
               {topic}
             </button>
@@ -139,12 +139,12 @@ const CertificatesSection = () => {
                 )}
               </div>
               <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors duration-300">
                   {cert.title}
                 </h3>
                 <p className="text-gray-400 text-sm mb-2">{cert.date}</p>
                 <p className="text-purple-300 text-xs font-medium mb-2">{cert.topic}</p>
-                <p className="text-gray-300 text-xs">{cert.provider}</p>
+                <p className="text-slate-600 dark:text-gray-300 text-xs">{cert.provider}</p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none"></div>
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none blur-xl -z-10"></div>
@@ -164,7 +164,7 @@ const CertificatesSection = () => {
         )}
         {/* Modal Preview */}
         {modalOpen && modalCert && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 dark:bg-black/70 backdrop-blur-sm">
             <div className="bg-slate-900 rounded-2xl p-6 max-w-3xl w-full relative shadow-2xl">
               <button
                 onClick={closeModal}
@@ -174,8 +174,8 @@ const CertificatesSection = () => {
                 &times;
               </button>
               <div className="flex flex-col items-center">
-                <h3 className="text-xl font-bold text-white mb-2">{modalCert.title}</h3>
-                <p className="text-gray-400 text-sm mb-2">{modalCert.provider} &bull; {modalCert.topic} &bull; {modalCert.date}</p>
+                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">{modalCert.title}</h3>
+                <p className="text-slate-500 dark:text-gray-400 text-sm mb-2">{modalCert.provider} &bull; {modalCert.topic} &bull; {modalCert.date}</p>
                 <div className="w-full flex justify-center items-center my-4">
                   {modalCert.type === 'pdf' ? (
                     <iframe

@@ -53,13 +53,13 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
-      {/* Dark Programmer Background Effects */}
-      <div className="fixed inset-0 bg-black/50"></div>
-      <div className="fixed inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5"></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
+      {/* Background overlay - light / dark */}
+      <div className="fixed inset-0 bg-slate-200/30 dark:bg-black/50 transition-colors duration-300"></div>
+      <div className="fixed inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-blue-500/10 dark:from-cyan-500/5 dark:via-transparent dark:to-blue-500/5 transition-colors duration-300"></div>
       
-      {/* Matrix-style grid overlay */}
-      <div className="fixed inset-0 opacity-5">
+      {/* Matrix-style grid overlay (visible in dark mode) */}
+      <div className="fixed inset-0 opacity-0 dark:opacity-5 transition-opacity duration-300">
         <div className="absolute inset-0" style={{
           backgroundImage: `
             linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),

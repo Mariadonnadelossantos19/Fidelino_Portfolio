@@ -64,12 +64,12 @@ const SocialMediaBar = () => (
         href={s.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="group rounded-lg shadow-lg bg-black/20 backdrop-blur-md p-3 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:bg-gradient-to-br hover:from-cyan-500 hover:to-blue-500 border border-cyan-500/20 hover:border-cyan-400/40"
+        className="group rounded-lg shadow-lg bg-white/80 dark:bg-black/20 backdrop-blur-md p-3 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:bg-gradient-to-br hover:from-cyan-500 hover:to-blue-500 border border-slate-200 dark:border-cyan-500/20 hover:border-cyan-500/50 dark:hover:border-cyan-400/40"
         style={{ boxShadow: '0 2px 12px 0 rgba(6,182,212,0.15)' }}
         aria-label={s.name}
       >
         {React.cloneElement(s.icon, {
-          className: 'w-6 h-6 text-cyan-400 group-hover:text-black transition-colors duration-300',
+          className: 'w-6 h-6 text-cyan-600 dark:text-cyan-400 group-hover:text-black transition-colors duration-300',
           style: { filter: 'drop-shadow(0 0 6px #06b6d4aa)' }
         })}
       </a>

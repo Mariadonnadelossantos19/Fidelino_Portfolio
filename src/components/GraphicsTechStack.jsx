@@ -122,7 +122,7 @@ const GraphicsTechStack = () => {
   }, []);
 
   return (
-    <div className="py-16 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <div className="py-16 px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Background Graphics */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -133,12 +133,12 @@ const GraphicsTechStack = () => {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4 font-mono">
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               Tech Stack
             </span>
           </h2>
-          <p className="text-lg text-gray-300">
+          <p className="text-lg text-slate-600 dark:text-gray-300">
             Interactive technology showcase with visual animations
           </p>
         </div>
@@ -170,7 +170,7 @@ const GraphicsTechStack = () => {
                 </div>
 
                 {/* Tech Name */}
-                <h3 className="text-center text-lg font-bold text-white font-mono mb-2">
+                <h3 className="text-center text-lg font-bold text-slate-800 dark:text-white font-mono mb-2">
                   {tech.name}
                 </h3>
 
@@ -213,8 +213,8 @@ const GraphicsTechStack = () => {
 
         {/* Tech Stack Visualization */}
         <div className="mt-16">
-          <div className="bg-black/80 backdrop-blur-sm rounded-xl border border-cyan-500/30 p-8 shadow-2xl">
-            <h3 className="text-2xl font-bold text-cyan-400 font-mono mb-6 text-center">
+          <div className="bg-white/90 dark:bg-black/80 backdrop-blur-sm rounded-xl border border-cyan-500/40 dark:border-cyan-500/30 p-8 shadow-2xl">
+            <h3 className="text-2xl font-bold text-cyan-600 dark:text-cyan-400 font-mono mb-6 text-center">
               Technology Ecosystem
             </h3>
             
@@ -224,7 +224,7 @@ const GraphicsTechStack = () => {
                 <div className="w-20 h-20 mx-auto mb-4 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center text-3xl shadow-lg">
                   🎨
                 </div>
-                <h4 className="text-lg font-semibold text-white font-mono mb-3">Frontend</h4>
+                <h4 className="text-lg font-semibold text-slate-800 dark:text-white font-mono mb-3">Frontend</h4>
                 <div className="space-y-2">
                   {['React', 'JavaScript'].map(tech => (
                     <div key={tech} className="px-3 py-1 bg-blue-500/10 border border-blue-400/30 rounded-full text-blue-400 text-sm font-mono">
@@ -239,7 +239,7 @@ const GraphicsTechStack = () => {
                 <div className="w-20 h-20 mx-auto mb-4 rounded-xl bg-gradient-to-br from-green-400 to-emerald-400 flex items-center justify-center text-3xl shadow-lg">
                   ⚙️
                 </div>
-                <h4 className="text-lg font-semibold text-white font-mono mb-3">Backend</h4>
+                <h4 className="text-lg font-semibold text-slate-800 dark:text-white font-mono mb-3">Backend</h4>
                 <div className="space-y-2">
                   {['Node.js', 'Python'].map(tech => (
                     <div key={tech} className="px-3 py-1 bg-green-500/10 border border-green-400/30 rounded-full text-green-400 text-sm font-mono">
@@ -254,7 +254,7 @@ const GraphicsTechStack = () => {
                 <div className="w-20 h-20 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-3xl shadow-lg">
                   🏗️
                 </div>
-                <h4 className="text-lg font-semibold text-white font-mono mb-3">Infrastructure</h4>
+                <h4 className="text-lg font-semibold text-slate-800 dark:text-white font-mono mb-3">Infrastructure</h4>
                 <div className="space-y-2">
                   {['Docker', 'AWS'].map(tech => (
                     <div key={tech} className="px-3 py-1 bg-purple-500/10 border border-purple-400/30 rounded-full text-purple-400 text-sm font-mono">

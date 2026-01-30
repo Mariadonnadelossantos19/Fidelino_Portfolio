@@ -71,7 +71,7 @@ const GraphicsProjectShowcase = () => {
   ];
 
   return (
-    <div className="py-20 px-4 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
+    <div className="py-20 px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-black dark:via-gray-900 dark:to-black relative overflow-hidden transition-colors duration-300">
       {/* Animated Background Graphics */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-40 h-40 bg-cyan-500/10 rounded-full blur-2xl animate-pulse"></div>
@@ -82,12 +82,12 @@ const GraphicsProjectShowcase = () => {
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-mono">
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6 font-mono">
+            <span className="bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
               Visual Projects
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto">
             Interactive project showcase with visual progress indicators and technology graphics
           </p>
         </div>
@@ -101,7 +101,7 @@ const GraphicsProjectShowcase = () => {
                 className={`p-6 rounded-xl border-2 transition-all duration-500 cursor-pointer transform hover:scale-105 ${
                   activeProject === index
                     ? `${project.bgColor} ${project.borderColor} shadow-lg shadow-cyan-500/20`
-                    : 'border-gray-700 bg-gray-800/50 hover:border-cyan-400/50 hover:bg-cyan-500/5'
+                    : 'border-slate-300 dark:border-gray-700 bg-slate-100/80 dark:bg-gray-800/50 hover:border-cyan-500/50 dark:hover:border-cyan-400/50 hover:bg-cyan-500/10 dark:hover:bg-cyan-500/5'
                 }`}
                 onClick={() => setActiveProject(index)}
               >
@@ -111,7 +111,7 @@ const GraphicsProjectShowcase = () => {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-xl font-bold text-white font-mono">{project.title}</h3>
+                      <h3 className="text-xl font-bold text-slate-800 dark:text-white font-mono">{project.title}</h3>
                       <span className={`px-3 py-1 rounded-full text-xs font-mono ${
                         project.status === 'Completed' 
                           ? 'bg-green-500/20 text-green-400 border border-green-500/30'
@@ -120,16 +120,16 @@ const GraphicsProjectShowcase = () => {
                         {project.status}
                       </span>
                     </div>
-                    <p className="text-gray-400 text-sm mb-3">{project.description}</p>
+                    <p className="text-slate-600 dark:text-gray-400 text-sm mb-3">{project.description}</p>
                     
                     {/* Progress Bar */}
-                    <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                    <div className="w-full bg-slate-300 dark:bg-gray-700 rounded-full h-2 mb-2">
                       <div 
                         className={`h-2 rounded-full bg-gradient-to-r ${project.color} transition-all duration-1000`}
                         style={{ width: `${project.progress}%` }}
                       ></div>
                     </div>
-                    <div className="text-sm text-gray-400 font-mono">{project.progress}% Complete</div>
+                    <div className="text-sm text-slate-500 dark:text-gray-400 font-mono">{project.progress}% Complete</div>
                   </div>
                 </div>
               </div>
@@ -138,7 +138,7 @@ const GraphicsProjectShowcase = () => {
 
           {/* Active Project Visualization */}
           <div className="relative">
-            <div className="bg-black/80 backdrop-blur-sm rounded-xl border border-cyan-500/30 p-8 shadow-2xl">
+            <div className="bg-white/90 dark:bg-black/80 backdrop-blur-sm rounded-xl border border-cyan-500/40 dark:border-cyan-500/30 p-8 shadow-2xl">
               <div className="flex items-center space-x-4 mb-8">
                 <div className={`w-20 h-20 rounded-xl bg-gradient-to-br ${projects[activeProject].color} flex items-center justify-center text-3xl shadow-lg`}>
                   {projects[activeProject].icon}
@@ -147,7 +147,7 @@ const GraphicsProjectShowcase = () => {
                   <h3 className="text-2xl font-bold text-cyan-400 font-mono">
                     {projects[activeProject].title}
                   </h3>
-                  <p className="text-gray-300">{projects[activeProject].description}</p>
+                  <p className="text-slate-600 dark:text-gray-300">{projects[activeProject].description}</p>
                 </div>
               </div>
               
@@ -187,7 +187,7 @@ const GraphicsProjectShowcase = () => {
               
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-lg font-semibold text-white font-mono mb-3">Technologies Used:</h4>
+                  <h4 className="text-lg font-semibold text-slate-800 dark:text-white font-mono mb-3">Technologies Used:</h4>
                   <div className="grid grid-cols-2 gap-3">
                     {projects[activeProject].technologies.map((tech, index) => (
                       <div
@@ -202,10 +202,10 @@ const GraphicsProjectShowcase = () => {
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-semibold text-white font-mono mb-3">Key Features:</h4>
+                  <h4 className="text-lg font-semibold text-slate-800 dark:text-white font-mono mb-3">Key Features:</h4>
                   <div className="grid grid-cols-2 gap-2">
                     {projects[activeProject].features.map((feature, index) => (
-                      <div key={index} className="flex items-center space-x-2 text-gray-300">
+                      <div key={index} className="flex items-center space-x-2 text-slate-600 dark:text-gray-300">
                         <span className="text-cyan-400">▶</span>
                         <span className="text-sm">{feature}</span>
                       </div>
@@ -216,7 +216,7 @@ const GraphicsProjectShowcase = () => {
                 <div className="flex space-x-4 pt-4">
                   <a
                     href={projects[activeProject].github}
-                    className="px-6 py-3 bg-gray-800 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors duration-300 font-mono flex items-center space-x-2"
+                    className="px-6 py-3 bg-slate-200 dark:bg-gray-800 border border-slate-300 dark:border-gray-600 text-slate-700 dark:text-gray-300 rounded-lg hover:bg-slate-300 dark:hover:bg-gray-700 transition-colors duration-300 font-mono flex items-center space-x-2"
                   >
                     <span>📁</span>
                     <span>View Code</span>

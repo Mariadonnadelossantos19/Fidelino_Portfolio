@@ -81,7 +81,7 @@ const ProjectsSection = () => {
   const projectCards = projects.map((project) => (
     <div
       key={project.id}
-      className="group relative bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-purple-400/50 transition-all duration-300 h-full transform hover:-translate-y-2 hover:scale-105"
+      className="group relative bg-white/90 dark:bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 hover:border-purple-500/50 dark:hover:border-purple-400/50 transition-all duration-300 h-full transform hover:-translate-y-2 hover:scale-105 shadow-lg dark:shadow-none"
     >
       <div className={`aspect-video ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
         <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20 group-hover:to-black/40 transition-all duration-300"></div>
@@ -91,10 +91,10 @@ const ProjectsSection = () => {
       </div>
       <div className="p-6 flex flex-col h-full">
         <div className="flex-grow">
-          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors duration-300">
             {project.title}
           </h3>
-          <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+          <p className="text-slate-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
             {project.description}
           </p>
         </div>
@@ -145,11 +145,11 @@ const ProjectsSection = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
+          <div className="bg-white/90 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-slate-200 dark:border-white/10 max-w-2xl mx-auto shadow-lg dark:shadow-none">
+            <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">
               Ready to Start Your Project?
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className="text-slate-600 dark:text-gray-300 mb-6">
               Let's collaborate to bring your ideas to life with cutting-edge technology and exceptional quality assurance.
             </p>
             <button

@@ -42,7 +42,7 @@ const HeroSection = ({ scrollToSection }) => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/50 to-black/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 to-slate-100/50 dark:from-gray-900/50 dark:to-black/50"></div>
       
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -57,22 +57,22 @@ const HeroSection = ({ scrollToSection }) => {
           {/* Text Content */}
           <div className="text-center lg:text-left space-y-8">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight font-mono">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 dark:text-white leading-tight font-mono">
                 Hi, I'm{' '}
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
                   Ma. Donna D. Fidelino
                 </span>
               </h1>
-              <h2 className="text-xl md:text-2xl lg:text-3xl text-cyan-300 font-medium font-mono">
+              <h2 className="text-xl md:text-2xl lg:text-3xl text-cyan-600 dark:text-cyan-300 font-medium font-mono">
                 Full Stack Developer & QA Engineer
               </h2>
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg md:text-xl text-slate-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Building robust web applications from frontend to backend, ensuring quality through comprehensive testing and modern development practices.
               </p>
               
               {/* Tech Stack Badges */}
               <div className="space-y-3">
-                <h3 className="text-base font-semibold text-cyan-300 font-mono text-center lg:text-left">
+                <h3 className="text-base font-semibold text-cyan-600 dark:text-cyan-300 font-mono text-center lg:text-left">
                   Tech Stack
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 justify-center lg:justify-start">
@@ -156,12 +156,12 @@ const HeroSection = ({ scrollToSection }) => {
                     }
                   ].map((tech) => (
                     <div key={tech.name} className="group cursor-pointer transform transition-all duration-300 hover:scale-105">
-                      <div className="p-2 rounded-lg border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 transition-all duration-300">
+                      <div className="p-2 rounded-lg border border-cyan-500/40 dark:border-cyan-500/30 bg-cyan-500/15 dark:bg-cyan-500/10 hover:bg-cyan-500/25 dark:hover:bg-cyan-500/20 transition-all duration-300">
                         <div className="flex items-center space-x-2">
                           <div className="w-4 h-4 flex items-center justify-center">
                             {tech.logo}
                           </div>
-                          <span className="text-cyan-400 text-xs font-mono">{tech.name}</span>
+                          <span className="text-cyan-600 dark:text-cyan-400 text-xs font-mono">{tech.name}</span>
                         </div>
                       </div>
                     </div>
@@ -179,7 +179,7 @@ const HeroSection = ({ scrollToSection }) => {
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
-                className="px-6 py-3 border-2 border-cyan-400 text-cyan-400 font-medium rounded-lg hover:bg-cyan-400 hover:text-black transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg font-mono text-sm"
+                className="px-6 py-3 border-2 border-cyan-500 dark:border-cyan-400 text-cyan-600 dark:text-cyan-400 font-medium rounded-lg hover:bg-cyan-500 dark:hover:bg-cyan-400 hover:text-white dark:hover:text-black transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg font-mono text-sm"
               >
                 Get In Touch
               </button>
@@ -195,16 +195,16 @@ const HeroSection = ({ scrollToSection }) => {
             {/* Quick Stats */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-400">1+</div>
-                <div className="text-sm text-gray-400">Years Experience</div>
+                <div className="text-2xl font-bold text-purple-500 dark:text-purple-400">1+</div>
+                <div className="text-sm text-slate-500 dark:text-gray-400">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-pink-400">10+</div>
-                <div className="text-sm text-gray-400">Projects Completed</div>
+                <div className="text-2xl font-bold text-pink-500 dark:text-pink-400">10+</div>
+                <div className="text-sm text-slate-500 dark:text-gray-400">Projects Completed</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-400">95%</div>
-                <div className="text-sm text-gray-400">Client Satisfaction</div>
+                <div className="text-2xl font-bold text-blue-500 dark:text-blue-400">95%</div>
+                <div className="text-sm text-slate-500 dark:text-gray-400">Client Satisfaction</div>
               </div>
             </div>
           </div>
@@ -212,9 +212,9 @@ const HeroSection = ({ scrollToSection }) => {
           <div className="flex justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
               {/* Terminal Window */}
-              <div className="bg-black/90 backdrop-blur-sm rounded-lg border border-cyan-500/30 shadow-2xl overflow-hidden">
+              <div className="bg-slate-800/95 dark:bg-black/90 backdrop-blur-sm rounded-lg border border-cyan-500/40 dark:border-cyan-500/30 shadow-2xl overflow-hidden">
                 {/* Terminal Header */}
-                <div className="flex items-center justify-between px-4 py-3 bg-gray-900/50 border-b border-cyan-500/20">
+                <div className="flex items-center justify-between px-4 py-3 bg-slate-700/50 dark:bg-gray-900/50 border-b border-cyan-500/30 dark:border-cyan-500/20">
                   <div className="flex items-center space-x-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -225,7 +225,7 @@ const HeroSection = ({ scrollToSection }) => {
                 
                 {/* Terminal Content */}
                 <div className="p-4 font-mono text-sm">
-                  <pre className="text-cyan-400 whitespace-pre-wrap leading-relaxed">
+                  <pre className="text-cyan-300 dark:text-cyan-400 whitespace-pre-wrap leading-relaxed">
                     {terminalText}
                     {isTyping && <span className="animate-pulse">█</span>}
                   </pre>

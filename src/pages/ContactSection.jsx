@@ -49,15 +49,15 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-black/20">
+    <section id="contact" className="py-20 px-4 bg-slate-100/50 dark:bg-black/20 transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-white text-center mb-16">
-          Get In <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
+        <h2 className="text-4xl font-bold text-slate-800 dark:text-white text-center mb-16">
+          Get In <span className="bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">Touch</span>
         </h2>
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-2xl font-bold text-white mb-6">Let's Work Together</h3>
-            <p className="text-gray-300 mb-8 leading-relaxed">
+            <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Let's Work Together</h3>
+            <p className="text-slate-600 dark:text-gray-300 mb-8 leading-relaxed">
               I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, feel free to reach out!
             </p>
             <div className="space-y-4">
@@ -68,8 +68,8 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-white font-semibold">Email</p>
-                  <p className="text-gray-300">ma.donna.fidelino@example.com</p>
+                  <p className="text-slate-800 dark:text-white font-semibold">Email</p>
+                  <p className="text-slate-600 dark:text-gray-300">ma.donna.fidelino@example.com</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -80,8 +80,8 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-white font-semibold">Location</p>
-                  <p className="text-gray-300">Manila, Philippines</p>
+                  <p className="text-slate-800 dark:text-white font-semibold">Location</p>
+                  <p className="text-slate-600 dark:text-gray-300">Manila, Philippines</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -91,19 +91,19 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-white font-semibold">LinkedIn</p>
-                  <p className="text-gray-300">linkedin.com/in/ma-donna-fidelino</p>
+                  <p className="text-slate-800 dark:text-white font-semibold">LinkedIn</p>
+                  <p className="text-slate-600 dark:text-gray-300">linkedin.com/in/ma-donna-fidelino</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+          <div className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-slate-200 dark:border-white/10 shadow-lg dark:shadow-none">
             {alert && (
               <div
                 className={`mb-6 px-4 py-3 rounded-lg text-sm font-semibold shadow-md transition-all duration-300 ${
                   alert.type === 'success'
-                    ? 'bg-green-500/20 text-green-300 border border-green-400/30'
-                    : 'bg-red-500/20 text-red-300 border border-red-400/30'
+                    ? 'bg-green-500/20 text-green-700 dark:text-green-300 border border-green-500/40 dark:border-green-400/30'
+                    : 'bg-red-500/20 text-red-700 dark:text-red-300 border border-red-500/40 dark:border-red-400/30'
                 }`}
                 role="alert"
                 aria-live="polite"
@@ -114,7 +114,7 @@ const ContactSection = () => {
             <form className="space-y-6" onSubmit={handleSubmit} autoComplete="off" noValidate>
               <div className="md:flex md:space-x-4">
                 <div className="flex-1 mb-4 md:mb-0">
-                  <label htmlFor="name" className="block text-white font-medium mb-2">Name</label>
+                  <label htmlFor="name" className="block text-slate-800 dark:text-white font-medium mb-2">Name</label>
                   <input
                     id="name"
                     name="name"
@@ -123,14 +123,14 @@ const ContactSection = () => {
                     required
                     aria-required="true"
                     aria-label="Name"
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
+                    className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-purple-500 dark:focus:border-purple-400 transition-colors"
                     placeholder="Your name"
                     value={form.name}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="flex-1">
-                  <label htmlFor="email" className="block text-white font-medium mb-2">Email</label>
+                  <label htmlFor="email" className="block text-slate-800 dark:text-white font-medium mb-2">Email</label>
                   <input
                     id="email"
                     name="email"
@@ -138,7 +138,7 @@ const ContactSection = () => {
                     required
                     aria-required="true"
                     aria-label="Email"
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors"
+                    className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-purple-500 dark:focus:border-purple-400 transition-colors"
                     placeholder="your.email@example.com"
                     value={form.email}
                     onChange={handleChange}

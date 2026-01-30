@@ -51,7 +51,7 @@ const AboutSection = () => {
   }, [skills.length]);
 
   return (
-    <section id="about" className="py-20 px-4 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <section id="about" className="py-20 px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Animated Background Graphics */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -62,10 +62,10 @@ const AboutSection = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-mono">
-            About <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Me</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6 font-mono">
+            About <span className="bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Me</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto">
             Passionate about creating exceptional digital experiences through full-stack development and quality engineering
           </p>
         </div>
@@ -74,49 +74,49 @@ const AboutSection = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <p className="text-lg text-gray-300 leading-relaxed">
-                I am a dedicated <span className="text-cyan-400 font-semibold">Full Stack Developer & QA Engineer</span> with a passion for building end-to-end solutions and ensuring software excellence. With expertise in both frontend and backend development, plus comprehensive testing strategies, I create robust applications that exceed user expectations.
+              <p className="text-lg text-slate-600 dark:text-gray-300 leading-relaxed">
+                I am a dedicated <span className="text-cyan-600 dark:text-cyan-400 font-semibold">Full Stack Developer & QA Engineer</span> with a passion for building end-to-end solutions and ensuring software excellence. With expertise in both frontend and backend development, plus comprehensive testing strategies, I create robust applications that exceed user expectations.
               </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-lg text-slate-600 dark:text-gray-300 leading-relaxed">
                 My journey in tech has been driven by curiosity and a desire to create meaningful solutions. I believe in the power of full-stack development combined with thorough testing to build trust and deliver exceptional user experiences.
               </p>
             </div>
 
             {/* Interactive Stats */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 group">
-                <div className="text-3xl font-bold text-cyan-400 mb-2 group-hover:scale-110 transition-transform duration-300">1+</div>
-                <div className="text-gray-300 text-sm font-mono">Years Experience</div>
+              <div className="bg-white/80 dark:bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-cyan-500/40 dark:border-cyan-500/30 hover:border-cyan-500/60 dark:hover:border-cyan-400/50 transition-all duration-300 group shadow-lg dark:shadow-none">
+                <div className="text-3xl font-bold text-cyan-600 dark:text-cyan-400 mb-2 group-hover:scale-110 transition-transform duration-300">1+</div>
+                <div className="text-slate-600 dark:text-gray-300 text-sm font-mono">Years Experience</div>
               </div>
-              <div className="bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 group">
-                <div className="text-3xl font-bold text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">10+</div>
-                <div className="text-gray-300 text-sm font-mono">Projects Completed</div>
+              <div className="bg-white/80 dark:bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-purple-500/40 dark:border-purple-500/30 hover:border-purple-500/60 dark:hover:border-purple-400/50 transition-all duration-300 group shadow-lg dark:shadow-none">
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">10+</div>
+                <div className="text-slate-600 dark:text-gray-300 text-sm font-mono">Projects Completed</div>
               </div>
-              <div className="bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-pink-500/30 hover:border-pink-400/50 transition-all duration-300 group">
-                <div className="text-3xl font-bold text-pink-400 mb-2 group-hover:scale-110 transition-transform duration-300">95%</div>
-                <div className="text-gray-300 text-sm font-mono">Client Satisfaction</div>
+              <div className="bg-white/80 dark:bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-pink-500/40 dark:border-pink-500/30 hover:border-pink-500/60 dark:hover:border-pink-400/50 transition-all duration-300 group shadow-lg dark:shadow-none">
+                <div className="text-3xl font-bold text-pink-600 dark:text-pink-400 mb-2 group-hover:scale-110 transition-transform duration-300">95%</div>
+                <div className="text-slate-600 dark:text-gray-300 text-sm font-mono">Client Satisfaction</div>
               </div>
             </div>
           </div>
 
           {/* Right Content - Interactive Skills */}
           <div className="relative">
-            <div className="bg-black/80 backdrop-blur-sm rounded-2xl p-8 border border-cyan-500/30 shadow-2xl">
-              <h3 className="text-2xl font-bold text-cyan-400 font-mono mb-8 text-center">
+            <div className="bg-white/90 dark:bg-black/80 backdrop-blur-sm rounded-2xl p-8 border border-cyan-500/40 dark:border-cyan-500/30 shadow-2xl">
+              <h3 className="text-2xl font-bold text-cyan-600 dark:text-cyan-400 font-mono mb-8 text-center">
                 What I Do
               </h3>
               
               {/* Skills Navigation */}
               <div className="flex justify-center mb-8">
-                <div className="flex space-x-2 bg-gray-800/50 rounded-lg p-1">
+                <div className="flex space-x-2 bg-slate-200/80 dark:bg-gray-800/50 rounded-lg p-1">
                   {skills.map((skill, index) => (
                     <button
                       key={index}
                       onClick={() => setActiveSkill(index)}
                       className={`px-4 py-2 rounded-md text-sm font-mono transition-all duration-300 ${
                         activeSkill === index
-                          ? 'bg-cyan-500 text-black'
-                          : 'text-gray-400 hover:text-cyan-400'
+                          ? 'bg-cyan-500 text-white dark:text-black'
+                          : 'text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400'
                       }`}
                     >
                       {skill.title}
@@ -132,9 +132,9 @@ const AboutSection = () => {
                     <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${skills[activeSkill].color} flex items-center justify-center shadow-lg`}>
                       {skills[activeSkill].icon}
                     </div>
-                    <h4 className="text-xl font-bold text-white font-mono">{skills[activeSkill].title}</h4>
+                    <h4 className="text-xl font-bold text-slate-800 dark:text-white font-mono">{skills[activeSkill].title}</h4>
                   </div>
-                  <p className="text-gray-300 leading-relaxed">{skills[activeSkill].description}</p>
+                  <p className="text-slate-600 dark:text-gray-300 leading-relaxed">{skills[activeSkill].description}</p>
                 </div>
 
                 {/* Progress Indicator */}
@@ -143,7 +143,7 @@ const AboutSection = () => {
                     <div
                       key={index}
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        index === activeSkill ? 'bg-cyan-400' : 'bg-gray-600'
+                        index === activeSkill ? 'bg-cyan-500 dark:bg-cyan-400' : 'bg-slate-400 dark:bg-gray-600'
                       }`}
                     />
                   ))}
