@@ -60,26 +60,19 @@ const EducationSection = () => {
   }, []);
 
   return (
-    <section id="education" className="py-20 px-4 bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
-      {/* Animated Background Graphics */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-pink-500/5 rounded-full blur-3xl animate-bounce"></div>
-        <div className="absolute bottom-20 left-1/3 w-28 h-28 bg-cyan-500/5 rounded-full blur-3xl animate-ping"></div>
-        <div className="absolute bottom-10 right-1/3 w-20 h-20 bg-yellow-500/5 rounded-full blur-3xl animate-pulse"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6 font-mono">
-            Education & <span className="bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Credentials</span>
+    <section id="education" className="py-20 px-4 bg-slate-50/80 dark:bg-zinc-900/50 transition-colors duration-300">
+      <div className="section-container">
+        <div className="text-center mb-14">
+          <p className="text-xs font-semibold tracking-widest uppercase text-teal-600 dark:text-teal-400 mb-3">Education</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+            Education & credentials
           </h2>
-          <p className="text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Academic excellence and professional achievements
+          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">
+            Academic background and awards
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-14 items-start">
           {/* Left Content - Profile & Education */}
           <div className="space-y-6">
             {/* Profile Photo with Enhanced Graphics */}

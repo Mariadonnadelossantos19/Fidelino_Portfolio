@@ -49,21 +49,24 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-slate-100/50 dark:bg-black/20 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-slate-800 dark:text-white text-center mb-16">
-          Get In <span className="bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">Touch</span>
-        </h2>
+    <section id="contact" className="py-20 px-4 bg-white dark:bg-zinc-900/50 transition-colors duration-300">
+      <div className="section-container max-w-4xl">
+        <div className="text-center mb-14">
+          <p className="text-xs font-semibold tracking-widest uppercase text-teal-600 dark:text-teal-400 mb-3">Contact</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+            Get in touch
+          </h2>
+        </div>
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Let's Work Together</h3>
-            <p className="text-slate-600 dark:text-gray-300 mb-8 leading-relaxed">
-              I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, feel free to reach out!
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4">Work with me</h3>
+            <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+              Open to new opportunities and projects. Say hello or ask a question—I’ll get back to you.
             </p>
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 bg-teal-600 dark:bg-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-white dark:text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
@@ -73,8 +76,8 @@ const ContactSection = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-slate-700 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
@@ -85,8 +88,8 @@ const ContactSection = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-slate-700 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6" />
                   </svg>
                 </div>
@@ -123,7 +126,7 @@ const ContactSection = () => {
                     required
                     aria-required="true"
                     aria-label="Name"
-                    className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-purple-500 dark:focus:border-purple-400 transition-colors"
+                    className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors"
                     placeholder="Your name"
                     value={form.name}
                     onChange={handleChange}
@@ -138,7 +141,7 @@ const ContactSection = () => {
                     required
                     aria-required="true"
                     aria-label="Email"
-                    className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-purple-500 dark:focus:border-purple-400 transition-colors"
+                    className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors"
                     placeholder="your.email@example.com"
                     value={form.email}
                     onChange={handleChange}
@@ -146,7 +149,7 @@ const ContactSection = () => {
                 </div>
               </div>
               <div>
-                <label htmlFor="message" className="block text-white font-medium mb-2">Message</label>
+                <label htmlFor="message" className="block text-slate-800 dark:text-white font-medium mb-2">Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -155,7 +158,7 @@ const ContactSection = () => {
                   required
                   aria-required="true"
                   aria-label="Message"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors resize-none"
                   placeholder="Your message..."
                   value={form.message}
                   onChange={handleChange}
@@ -163,7 +166,7 @@ const ContactSection = () => {
               </div>
               <button
                 type="submit"
-                className="w-full px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400/60 relative"
+                className="w-full px-6 py-3 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white dark:text-slate-900 font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900"
                 disabled={loading}
                 aria-busy={loading}
               >

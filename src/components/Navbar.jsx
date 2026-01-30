@@ -71,7 +71,7 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-          ? 'bg-white/80 dark:bg-black/80 backdrop-blur-2xl shadow-2xl border-b border-slate-200 dark:border-cyan-500/20' 
+          ? 'bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800' 
           : 'bg-transparent'
       }`}
     >
@@ -84,24 +84,17 @@ const Navbar = () => {
             className="flex items-center space-x-3 cursor-pointer group" 
             onClick={() => scrollToSection('home')}
           >
-              <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-500 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-cyan-500/30 transition-all duration-300 border border-cyan-500/20">
-                <span className="text-black font-bold text-sm">MF</span>
-                </div>
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-md"
-                whileHover={{ scale: 1.2 }}
-              />
+            <div className="relative">
+              <div className="w-10 h-10 bg-teal-600 dark:bg-teal-500 rounded-lg flex items-center justify-center">
+                <span className="text-white dark:text-slate-900 font-bold text-sm">MF</span>
               </div>
-              <div className="flex flex-col">
-              <motion.span 
-                className="text-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent font-mono"
-                whileHover={{ scale: 1.02 }}
-              >
-                  Fidelino
-              </motion.span>
-              <span className="text-xs text-cyan-600 dark:text-cyan-400 font-medium font-mono">QA Engineer</span>
-              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-bold text-slate-800 dark:text-slate-100">
+                Fidelino
+              </span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">QA Engineer</span>
+            </div>
           </motion.div>
 
           {/* Theme Toggle */}
@@ -110,7 +103,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-cyan-500/10 border border-transparent dark:border-cyan-500/20 transition-all duration-300 mr-2"
+            className="p-2 rounded-md text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors mr-2"
           >
             {theme === 'dark' ? (
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
@@ -128,26 +121,14 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group font-mono ${
+                  className={`relative px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                     activeSection === item.id
-                      ? 'text-cyan-600 dark:text-cyan-400 bg-cyan-500/15 dark:bg-cyan-500/10 backdrop-blur-sm border border-cyan-500/40 dark:border-cyan-500/30 shadow-lg shadow-cyan-500/20'
-                      : 'text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-cyan-500/10 dark:hover:bg-cyan-500/5 backdrop-blur-sm border border-transparent hover:border-cyan-500/30 dark:hover:border-cyan-500/20'
+                      ? 'text-teal-600 dark:text-teal-400 bg-teal-500/10 border border-teal-500/20'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border border-transparent'
                   }`}
                 >
-                  <span className="text-sm group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
-                  <span className="ml-2 group-hover:translate-x-0.5 transition-transform duration-300">{item.label}</span>
-                  
-                  {/* Active indicator */}
-                  {activeSection === item.id && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/25 to-blue-500/25 dark:from-cyan-500/20 dark:to-blue-500/20 rounded-lg border border-cyan-500/40 dark:border-cyan-400/30"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
+                  <span className="relative z-10">{item.label}</span>
                 </motion.button>
               ))}
             </div>
@@ -159,23 +140,21 @@ const Navbar = () => {
               {menuItems.slice(0, 4).map((item) => (
                 <motion.button
                   key={item.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(item.id)}
-                  className={`px-3 py-2 rounded-full text-sm transition-all duration-300 ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     activeSection === item.id
-                      ? 'text-cyan-600 dark:text-white bg-cyan-500/15 dark:bg-white/10 backdrop-blur-sm'
-                      : 'text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
+                      ? 'text-teal-600 dark:text-teal-400 bg-teal-500/10'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                   }`}
                 >
-                  <span className="text-sm">{item.icon}</span>
+                  {item.label}
                 </motion.button>
               ))}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="px-3 py-2 rounded-full text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 backdrop-blur-sm transition-all duration-300"
+                className="px-3 py-2 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 <span className="text-sm">⋯</span>
               </motion.button>
@@ -188,7 +167,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="relative inline-flex items-center justify-center p-2 rounded-full text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 backdrop-blur-sm transition-all duration-300"
+              className="inline-flex items-center justify-center p-2 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               aria-expanded="false"
             >
               <span className="sr-only">Toggle menu</span>
@@ -249,14 +228,13 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
               onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center space-x-3 w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  className={`flex items-center w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                 activeSection === item.id
-                      ? 'text-white bg-white/10 backdrop-blur-sm'
-                      : 'text-gray-400 hover:text-white hover:bg-white/5'
+                      ? 'text-teal-600 dark:text-teal-400 bg-teal-500/10'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
-                  <span className="text-lg">{item.icon}</span>
-                  <span>{item.label}</span>
+                  {item.label}
                 </motion.button>
           ))}
         </div>
@@ -264,7 +242,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Minimalist Tablet Dropdown */}
+      {/* Tablet Dropdown */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -284,14 +262,13 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
               onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center space-x-3 w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  className={`flex items-center w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                 activeSection === item.id
-                      ? 'text-cyan-600 dark:text-white bg-cyan-500/15 dark:bg-white/10 backdrop-blur-sm'
-                      : 'text-slate-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
+                      ? 'text-teal-600 dark:text-teal-400 bg-teal-500/10'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
-                  <span className="text-lg">{item.icon}</span>
-                  <span>{item.label}</span>
+                  {item.label}
                 </motion.button>
           ))}
         </div>

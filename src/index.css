@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
-/* Class-based dark mode (toggle) */
-@custom-variant dark (&:where(.dark, .dark *));
+/* Class-based dark mode (toggle) - double & required for Tailwind v4 */
+@custom-variant dark (&&:where(.dark, .dark *));
+
+/* Professional typography – DM Sans */
+body {
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
 
 /* Custom animations */
 @keyframes blob {
@@ -77,6 +82,38 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Section layout – consistent max-width and spacing */
+.section-container {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tw-prose-body);
+}
+
+/* Restrained gradient text (no animation) */
+.gradient-text-static {
+  background: linear-gradient(135deg, #0f766e 0%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text-static {
+  background: linear-gradient(135deg, #5eead4 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Custom scrollbar - light mode */
 ::-webkit-scrollbar {
   width: 8px;
@@ -139,23 +176,19 @@ html {
   border-color: rgba(139, 92, 246, 0.3);
 }
 
-/* Gradient text animation */
+/* Gradient text (static, professional) */
 .gradient-text {
-  background: linear-gradient(45deg, #8b5cf6, #ec4899, #8b5cf6);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, #0f766e 0%, #0891b2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 3s ease infinite;
 }
 
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+.dark .gradient-text {
+  background: linear-gradient(135deg, #5eead4 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* --- Custom Section Animations --- */

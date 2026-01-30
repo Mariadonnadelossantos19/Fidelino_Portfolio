@@ -53,21 +53,9 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-100 dark:from-gray-900 dark:via-black dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
-      {/* Background overlay - light / dark */}
-      <div className="fixed inset-0 bg-slate-200/30 dark:bg-black/50 transition-colors duration-300"></div>
-      <div className="fixed inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-blue-500/10 dark:from-cyan-500/5 dark:via-transparent dark:to-blue-500/5 transition-colors duration-300"></div>
-      
-      {/* Matrix-style grid overlay (visible in dark mode) */}
-      <div className="fixed inset-0 opacity-0 dark:opacity-5 transition-opacity duration-300">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}></div>
-      </div>
+    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+      {/* Subtle background tint only */}
+      <div className="fixed inset-0 bg-slate-100/50 dark:bg-zinc-900/50 pointer-events-none" aria-hidden="true" />
 
       {/* Social Media Bar */}
       <SocialMediaBar />
