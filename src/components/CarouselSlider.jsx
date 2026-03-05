@@ -9,6 +9,7 @@ const CarouselSlider = ({
   showDots = true,
   showArrows = true,
   itemsPerView = 3,
+  simple = false,
   className = ""
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -155,42 +156,26 @@ const CarouselSlider = ({
         </div>
       )}
 
-      {/* Enhanced Carousel Container */}
-      <div className="relative group">
-        {/* Gradient Overlays for better visual effect */}
-        <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none"></div>
-
-        {/* Enhanced Navigation Arrows */}
+      {/* Carousel: arrows outside, track in middle */}
+      <div className="relative group flex items-center gap-2 md:gap-4">
+        {/* Left arrow - outside */}
         {showArrows && items.length > itemsPerView && (
-          <>
-            <button
-              onClick={goToPrev}
-              disabled={isTransitioning}
-              className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors opacity-0 group-hover:opacity-100 border border-slate-200 dark:border-slate-600 shadow"
-              aria-label="Previous slide"
-            >
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={goToNext}
-              disabled={isTransitioning}
-              className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors opacity-0 group-hover:opacity-100 border border-slate-200 dark:border-slate-600 shadow"
-              aria-label="Next slide"
-            >
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </>
+          <button
+            onClick={goToPrev}
+            disabled={isTransitioning}
+            className="flex-shrink-0 z-20 w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors border border-slate-200 dark:border-slate-600 shadow"
+            aria-label="Previous slide"
+          >
+            <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
         )}
 
-        {/* Enhanced Carousel Track */}
+        {/* Carousel track */}
         <div
           ref={carouselRef}
-          className="flex gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4"
+          className="flex-1 min-w-0 flex gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none'
@@ -221,16 +206,34 @@ const CarouselSlider = ({
           ))}
         </div>
 
-        {/* Enhanced Progress Bar */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-48 h-2 bg-white/10 backdrop-blur-sm rounded-full overflow-hidden border border-white/20">
-          <div 
-            className="h-full bg-teal-500 rounded-full transition-all duration-700 ease-out"
-            style={{ 
-              width: `${((currentIndex + 1) / (maxIndex + 1)) * 100}%` 
-            }}
-          />
-        </div>
+        {/* Right arrow - outside */}
+        {showArrows && items.length > itemsPerView && (
+          <button
+            onClick={goToNext}
+            disabled={isTransitioning}
+            className="flex-shrink-0 z-20 w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors border border-slate-200 dark:border-slate-600 shadow"
+            aria-label="Next slide"
+          >
+            <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        )}
       </div>
+
+      {/* Progress bar (non-simple only) */}
+      {!simple && (
+        <div className="relative h-8 flex justify-center">
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-48 h-2 bg-white/10 backdrop-blur-sm rounded-full overflow-hidden border border-white/20">
+            <div 
+              className="h-full bg-teal-500 rounded-full transition-all duration-700 ease-out"
+              style={{ 
+                width: `${((currentIndex + 1) / (maxIndex + 1)) * 100}%` 
+              }}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Enhanced Dots Navigation */}
       {showDots && items.length > itemsPerView && (

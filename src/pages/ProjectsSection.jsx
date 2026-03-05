@@ -126,6 +126,7 @@ const ProjectsSection = () => {
           showDots={true}
           showArrows={true}
           itemsPerView={3}
+          simple={true}
           className="mb-16"
         />
 

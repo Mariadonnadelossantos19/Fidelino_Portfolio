@@ -3,7 +3,6 @@ import './App.css'
 import Navbar from './components/Navbar'
 import HeroSection from './pages/HeroSection'
 import AboutSection from './pages/AboutSection'
-import EducationSection from './pages/EducationSection'
 import CertificatesSection from './pages/CertificatesSection'
 import ProjectsSection from './pages/ProjectsSection'
 import ContactSection from './pages/ContactSection'
@@ -28,7 +27,7 @@ function App() {
   // Handle scroll to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'education', 'skills', 'work-experience', 'projects', 'certificates', 'contact']
+      const sections = ['home', 'about', 'skills', 'work-experience', 'projects', 'certificates', 'contact']
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -51,16 +50,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
-      {/* Subtle background tint only */}
-      <div className="fixed inset-0 bg-slate-100/50 dark:bg-zinc-900/50 pointer-events-none" aria-hidden="true" />
-
-      {/* Social Media Bar */}
       <SocialMediaBar />
-      {/* Navigation */}
       <Navbar />
       <HeroSection scrollToSection={scrollToSection} />
       <AboutSection />
-      <EducationSection />
       <GraphicsTechStack />
       <WorkExperience />
       <ProjectsSection />
