@@ -141,14 +141,14 @@ const CarouselSlider = ({
     <div className={`relative ${className}`}>
       {/* Header with enhanced styling */}
       {(title || subtitle) && (
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           {title && (
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-3">
               {title}
             </h2>
           )}
           {subtitle && (
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xl mx-auto">
               {subtitle}
             </p>
           )}
@@ -167,7 +167,7 @@ const CarouselSlider = ({
             <button
               onClick={goToPrev}
               disabled={isTransitioning}
-              className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:from-purple-500/40 hover:to-pink-500/40 transition-all duration-300 opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 border border-white/20 hover:border-purple-400/50 shadow-lg hover:shadow-purple-500/25"
+              className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors opacity-0 group-hover:opacity-100 border border-slate-200 dark:border-slate-600 shadow"
               aria-label="Previous slide"
             >
               <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,7 +177,7 @@ const CarouselSlider = ({
             <button
               onClick={goToNext}
               disabled={isTransitioning}
-              className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:from-purple-500/40 hover:to-pink-500/40 transition-all duration-300 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 border border-white/20 hover:border-purple-400/50 shadow-lg hover:shadow-purple-500/25"
+              className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors opacity-0 group-hover:opacity-100 border border-slate-200 dark:border-slate-600 shadow"
               aria-label="Next slide"
             >
               <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,7 +210,7 @@ const CarouselSlider = ({
           {items.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full snap-start transform transition-all duration-500 hover:scale-105"
+              className="flex-shrink-0 w-full snap-start"
               style={{ 
                 width: `calc(100% / ${itemsPerView} - 1.5rem)`,
                 minWidth: `calc(100% / ${itemsPerView} - 1.5rem)`
@@ -224,7 +224,7 @@ const CarouselSlider = ({
         {/* Enhanced Progress Bar */}
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-48 h-2 bg-white/10 backdrop-blur-sm rounded-full overflow-hidden border border-white/20">
           <div 
-            className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-700 ease-out shadow-lg"
+            className="h-full bg-teal-500 rounded-full transition-all duration-700 ease-out"
             style={{ 
               width: `${((currentIndex + 1) / (maxIndex + 1)) * 100}%` 
             }}
@@ -242,8 +242,8 @@ const CarouselSlider = ({
               disabled={isTransitioning}
               className={`w-4 h-4 rounded-full transition-all duration-300 transform hover:scale-125 ${
                 index === currentIndex
-                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 scale-125 shadow-lg shadow-purple-500/50'
-                  : 'bg-white/30 hover:bg-white/50 hover:shadow-lg'
+                  ? 'bg-teal-500 scale-125'
+                  : 'bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -256,7 +256,7 @@ const CarouselSlider = ({
         <div className="flex justify-center items-center mt-8">
           <button
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-            className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-full text-white text-sm hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 border border-white/20 hover:border-purple-400/50 shadow-lg"
+            className="flex items-center space-x-3 px-6 py-3 bg-slate-200 dark:bg-slate-700 rounded-full text-slate-700 dark:text-slate-300 text-sm hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors border border-slate-200 dark:border-slate-600"
           >
             <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
               isAutoPlaying ? 'bg-green-400 shadow-lg shadow-green-400/50' : 'bg-red-400 shadow-lg shadow-red-400/50'

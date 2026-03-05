@@ -44,18 +44,13 @@ const experiences = [
 
 const WorkExperience = () => {
   return (
-    <section id="work-experience" className="py-20 px-4 bg-slate-50/80 dark:bg-zinc-900/50 transition-colors duration-300">
+    <section id="work-experience" className="py-16 px-4 bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
       <div className="section-container">
-        <div className="text-center mb-14">
-          <p className="text-xs font-semibold tracking-widest uppercase text-teal-600 dark:text-teal-400 mb-3">
-            Experience
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+        <div className="mb-12">
+          <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Experience</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
             Work experience
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">
-            Roles and responsibilities in QA, technical support, and development.
-          </p>
         </div>
 
         <div className="max-w-3xl mx-auto space-y-8">

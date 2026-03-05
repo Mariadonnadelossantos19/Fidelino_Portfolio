@@ -49,11 +49,11 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-white dark:bg-zinc-900/50 transition-colors duration-300">
+    <section id="contact" className="py-16 px-4 bg-white dark:bg-zinc-950 transition-colors duration-300">
       <div className="section-container max-w-4xl">
-        <div className="text-center mb-14">
-          <p className="text-xs font-semibold tracking-widest uppercase text-teal-600 dark:text-teal-400 mb-3">Contact</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+        <div className="mb-12">
+          <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Contact</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
             Get in touch
           </h2>
         </div>
@@ -87,20 +87,25 @@ const ContactSection = () => {
                   <p className="text-slate-600 dark:text-gray-300">Manila, Philippines</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
+              <a
+                href="https://linkedin.com/in/ma-donna-fidelino"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-4 group"
+              >
+                <div className="w-10 h-10 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-teal-500/20 dark:group-hover:bg-teal-500/20 transition-colors">
                   <svg className="w-5 h-5 text-slate-700 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6" />
                   </svg>
                 </div>
                 <div>
                   <p className="text-slate-800 dark:text-white font-semibold">LinkedIn</p>
-                  <p className="text-slate-600 dark:text-gray-300">linkedin.com/in/ma-donna-fidelino</p>
+                  <p className="text-teal-600 dark:text-teal-400 text-sm group-hover:underline">linkedin.com/in/ma-donna-fidelino</p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
-          <div className="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-slate-200 dark:border-white/10 shadow-lg dark:shadow-none">
+          <div className="rounded-xl p-8 border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50">
             {alert && (
               <div
                 className={`mb-6 px-4 py-3 rounded-lg text-sm font-semibold shadow-md transition-all duration-300 ${

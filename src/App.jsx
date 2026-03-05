@@ -10,10 +10,7 @@ import ContactSection from './pages/ContactSection'
 import Footer from './pages/Footer'
 import SocialMediaBar from './components/SocialMediaBar'
 import WorkExperience from './pages/WorkExperience'
-import InteractiveSkills from './components/InteractiveSkills'
-import ProjectShowcase from './components/ProjectShowcase'
 import GraphicsTechStack from './components/GraphicsTechStack'
-import GraphicsProjectShowcase from './components/GraphicsProjectShowcase'
 
 
 function App() {
@@ -31,7 +28,7 @@ function App() {
   // Handle scroll to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'education', 'projects', 'certificates', 'contact']
+      const sections = ['home', 'about', 'education', 'skills', 'work-experience', 'projects', 'certificates', 'contact']
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -61,29 +58,14 @@ function App() {
       <SocialMediaBar />
       {/* Navigation */}
       <Navbar />
-      {/* Hero Section */}
       <HeroSection scrollToSection={scrollToSection} />
-      {/* Interactive Skills Section */}
-      <InteractiveSkills />
-      {/* Graphics Tech Stack */}
-      <GraphicsTechStack />
-      {/* About Section */}
       <AboutSection />
-      {/* Education Section */}
       <EducationSection />
-      {/* Work Experience Section */}
+      <GraphicsTechStack />
       <WorkExperience />
-      {/* Graphics Project Showcase */}
-      <GraphicsProjectShowcase />
-      {/* Project Showcase */}
-      <ProjectShowcase />
-      {/* Certificates Section */}
-      <CertificatesSection />
-      {/* Projects Section */}
       <ProjectsSection />
-      {/* Contact Section */}
+      <CertificatesSection />
       <ContactSection />
-      {/* Footer */}
       <Footer />
     </div>
   )

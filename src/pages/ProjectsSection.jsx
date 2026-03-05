@@ -5,136 +5,122 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: "INTERNAL AUDIT MANAGEMENT SYSTEM (IAMS)",
-      description: "Comprehensive automated testing suite for an e-commerce platform, covering user flows, payment processing, and inventory management.",
-      technologies: ["Selenium", "Java", "TestNG"],
-      icon: (
-        <svg className="w-16 h-16 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-      gradient: "from-purple-500/20 to-pink-500/20"
+      title: "Customer Satisfaction Feedback System",
+      description: "Web app for collecting and managing customer feedback. Built with React and Vite for a fast, modern interface.",
+      technologies: ["React", "Vite", "Tailwind CSS"],
+      liveUrl: "https://mintcream-termite-167038.hostingersite.com/",
+      sourceUrl: null,
     },
     {
       id: 2,
-      title: "Information Systems Strategic Plan (ISSP)",
-      description: "Modern, responsive portfolio website built with React and Tailwind CSS, featuring smooth animations and optimal user experience.",
-      technologies: ["React", "Tailwind CSS", "Vite"],
-      icon: (
-        <svg className="w-16 h-16 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-      ),
-      gradient: "from-blue-500/20 to-purple-500/20"
+      title: "ICT Equipment Inventory and Management System",
+      description: "DOST-MIMAROPA system to track and manage laptops, desktops, monitors, printers, and related assets. One system, full visibility.",
+      technologies: ["Laravel", "PHP", "MySQL"],
+      liveUrl: "https://lavender-caterpillar-208807.hostingersite.com/",
+      sourceUrl: null,
     },
     {
       id: 3,
-      title: "API Testing Framework",
-      description: "Robust API testing framework with comprehensive test coverage, automated reporting, and CI/CD integration.",
-      technologies: ["Postman", "JavaScript", "Newman"],
-      icon: (
-        <svg className="w-16 h-16 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-      gradient: "from-green-500/20 to-blue-500/20"
+      title: "Centralized Inventory & Monitoring",
+      description: "CIM TSD — Manage and monitor office supplies across all TSD units. Accurate tracking, controlled access, and real-time visibility for Super Admin, Unit Head, and custodians.",
+      technologies: ["Laravel", "PHP", "MySQL"],
+      liveUrl: "https://slategray-eland-617147.hostingersite.com/",
+      sourceUrl: null,
     },
     {
       id: 4,
-      title: "Mobile App Testing Suite",
-      description: "Comprehensive mobile testing framework covering iOS and Android platforms with real device testing capabilities.",
-      technologies: ["Appium", "Python", "Jenkins"],
-      icon: (
-        <svg className="w-16 h-16 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-        </svg>
-      ),
-      gradient: "from-orange-500/20 to-yellow-500/20"
-    },
-    {
-      id: 5,
-      title: "Performance Testing Dashboard",
-      description: "Real-time performance monitoring dashboard with automated load testing and detailed analytics reporting.",
-      technologies: ["JMeter", "Grafana", "Docker"],
-      icon: (
-        <svg className="w-16 h-16 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
-      ),
-      gradient: "from-red-500/20 to-pink-500/20"
-    },
-    {
-      id: 6,
-      title: "CI/CD Pipeline Automation",
-      description: "End-to-end CI/CD pipeline with automated testing, deployment, and monitoring for continuous delivery.",
-      technologies: ["GitHub Actions", "Docker", "AWS"],
-      icon: (
-        <svg className="w-16 h-16 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-      gradient: "from-indigo-500/20 to-purple-500/20"
+      title: "Project Management and Notification System",
+      description: "DOST-PMNS — Project management and notification system for tracking tasks, deadlines, and team updates.",
+      technologies: ["Laravel", "PHP", "MySQL"],
+      liveUrl: "https://papayawhip-walrus-915090.hostingersite.com/",
+      sourceUrl: null,
     }
   ];
 
-  // Create project cards for carousel
+  // Create project cards for carousel — show live system (landing/hero) instead of icon
   const projectCards = projects.map((project) => (
     <div
       key={project.id}
-      className="group relative bg-white/90 dark:bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 hover:border-purple-500/50 dark:hover:border-purple-400/50 transition-all duration-300 h-full transform hover:-translate-y-2 hover:scale-105 shadow-lg dark:shadow-none"
+      className="group relative bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-colors duration-200 h-full"
     >
-      <div className={`aspect-video ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20 group-hover:to-black/40 transition-all duration-300"></div>
-        <div className="relative z-10 group-hover:scale-110 transition-transform duration-300">
-          {project.icon}
-        </div>
-      </div>
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block aspect-video bg-slate-100 dark:bg-slate-800 relative overflow-hidden"
+        aria-label={`Open ${project.title} — live preview`}
+      >
+        <iframe
+          src={project.liveUrl}
+          title={project.title}
+          className="absolute top-0 left-0 w-[200%] h-[200%] origin-top-left pointer-events-none"
+          style={{ transform: 'scale(0.5)' }}
+          sandbox="allow-scripts allow-same-origin"
+        />
+      </a>
       <div className="p-6 flex flex-col h-full">
         <div className="flex-grow">
-          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors duration-300">
+          <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-2">
             {project.title}
           </h3>
-          <p className="text-slate-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 leading-relaxed">
             {project.description}
           </p>
         </div>
-        
         <div className="flex flex-wrap gap-2 mb-4">
           {project.technologies.map((tech, index) => (
             <span
               key={index}
-              className="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full group-hover:bg-purple-500/30 group-hover:text-purple-200 transition-all duration-300"
+              className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs rounded-md"
             >
               {tech}
             </span>
           ))}
         </div>
-        
-        <div className="flex space-x-4">
-          <button className="text-purple-400 hover:text-purple-300 text-sm font-medium transition-all duration-300 group-hover:translate-x-1 transform hover:scale-105">
-            View Project
-          </button>
-          <button className="text-purple-400 hover:text-purple-300 text-sm font-medium transition-all duration-300 group-hover:translate-x-1 transform hover:scale-105">
-            Source Code
-          </button>
+        <div className="flex flex-wrap gap-4">
+          {project.liveUrl ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal-600 dark:text-teal-400 hover:underline text-sm font-medium inline-flex items-center gap-1.5"
+            >
+              View live site
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            </a>
+          ) : null}
+          {project.sourceUrl ? (
+            <a
+              href={project.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 dark:text-slate-400 hover:underline text-sm font-medium inline-flex items-center gap-1.5"
+            >
+              Source code
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            </a>
+          ) : null}
         </div>
       </div>
-
-      {/* Enhanced Hover Effect Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none"></div>
-      
-      {/* Glow Effect */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none blur-xl -z-10"></div>
     </div>
   ));
 
   return (
-    <section id="projects" className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-16 px-4 bg-white dark:bg-zinc-950 transition-colors duration-300">
+      <div className="section-container max-w-6xl">
+        <div className="mb-10">
+          <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Projects</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+            Projects
+          </h2>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 max-w-xl">
+            Selected work in QA, automation, and web development.
+          </p>
+        </div>
         <CarouselSlider
           items={projectCards}
-          title="Featured Projects"
-          subtitle="Explore my latest work showcasing expertise in quality assurance, web development, and automation testing. Each project demonstrates my commitment to delivering high-quality, user-centric solutions."
+          title=""
+          subtitle=""
           autoPlay={true}
           autoPlayInterval={5000}
           showDots={true}
@@ -143,20 +129,16 @@ const ProjectsSection = () => {
           className="mb-16"
         />
 
-        {/* Call to Action */}
         <div className="text-center">
-          <div className="bg-white/90 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-slate-200 dark:border-white/10 max-w-2xl mx-auto shadow-lg dark:shadow-none">
-            <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">
-              Ready to Start Your Project?
-            </h3>
-            <p className="text-slate-600 dark:text-gray-300 mb-6">
-              Let's collaborate to bring your ideas to life with cutting-edge technology and exceptional quality assurance.
+          <div className="rounded-xl p-8 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 max-w-xl mx-auto">
+            <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm">
+              Have a project in mind? I’d be glad to hear about it.
             </p>
             <button
               onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white font-medium rounded-lg text-sm transition-colors"
             >
-              Get In Touch
+              Get in touch
             </button>
           </div>
         </div>

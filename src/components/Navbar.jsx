@@ -21,7 +21,7 @@ const Navbar = () => {
   // Handle active section detection
   useEffect(() => {
     const handleScrollSpy = () => {
-      const sections = ['home', 'about', 'education', 'work-experience', 'projects', 'certificates', 'contact'];
+      const sections = ['home', 'about', 'education', 'skills', 'work-experience', 'projects', 'certificates', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -58,7 +58,8 @@ const Navbar = () => {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'education', label: 'Education' },
-    { id: 'work-experience', label: 'Work Experience' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'work-experience', label: 'Work' },
     { id: 'projects', label: 'Projects' },
     { id: 'certificates', label: 'Certificates' },
     { id: 'contact', label: 'Contact' },

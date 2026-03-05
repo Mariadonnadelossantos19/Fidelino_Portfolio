@@ -75,16 +75,19 @@ const CertificatesSection = () => {
   };
 
   return (
-    <section id="certificates" className="py-20 px-4 bg-gradient-to-br from-slate-200 via-purple-100/30 to-slate-200 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-900 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-10 text-center gradient-text">
-          Professional Certificates
-        </h2>
-        {/* Provider Tabs */}
-        <div className="flex flex-wrap gap-4 justify-center mb-6">
+    <section id="certificates" className="py-16 px-4 bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
+      <div className="section-container">
+        <div className="mb-10">
+          <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Certificates</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+            Certificates
+          </h2>
+        </div>
+
+        <div className="flex flex-wrap gap-2 mb-6">
           <button
             onClick={() => { setSelectedProvider('All'); setSelectedTopic('All'); setVisibleCount(6); }}
-            className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedProvider === 'All' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' : 'bg-white/10 text-white hover:bg-purple-500/20'}`}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedProvider === 'All' ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-600'}`}
           >
             All
           </button>
@@ -92,111 +95,93 @@ const CertificatesSection = () => {
             <button
               key={provider}
               onClick={() => { setSelectedProvider(provider); setSelectedTopic('All'); setVisibleCount(6); }}
-              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedProvider === provider ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' : 'bg-slate-200/80 dark:bg-white/10 text-slate-800 dark:text-white hover:bg-purple-500/20 dark:hover:bg-purple-500/20'}`}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedProvider === provider ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-600'}`}
             >
               {provider}
             </button>
           ))}
         </div>
-        {/* Topic Filter */}
-        <div className="flex flex-wrap gap-2 justify-center mb-8">
+        <div className="flex flex-wrap gap-2 mb-8">
           <button
             onClick={() => { setSelectedTopic('All'); setVisibleCount(6); }}
-            className={`px-4 py-1 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedTopic === 'All' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow' : 'bg-white/10 text-white hover:bg-purple-500/20'}`}
+            className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${selectedTopic === 'All' ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}
           >
-            All
+            All topics
           </button>
           {TOPICS.map(topic => (
             <button
               key={topic}
               onClick={() => { setSelectedTopic(topic); setVisibleCount(6); }}
-              className={`px-4 py-1 rounded-full text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/60 ${selectedTopic === topic ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow' : 'bg-slate-200/80 dark:bg-white/10 text-slate-800 dark:text-white hover:bg-purple-500/20 dark:hover:bg-purple-500/20'}`}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${selectedTopic === topic ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}
             >
               {topic}
             </button>
           ))}
         </div>
-        {/* Certificates Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {filtered.slice(0, visibleCount).map((cert, index) => (
             <button
               key={`${cert.title}-${cert.date}-${index}`}
               onClick={() => openModal(cert)}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl h-full flex flex-col cursor-pointer focus:outline-none"
+              className="text-left rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 overflow-hidden hover:border-teal-500/40 transition-colors h-full flex flex-col focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-950"
               tabIndex={0}
               aria-label={`Preview certificate: ${cert.title}`}
             >
-              <div className="w-full h-40 bg-white/10 flex items-center justify-center overflow-hidden">
+              <div className="w-full h-36 bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
                 {cert.type === 'pdf' ? (
-                  <iframe
-                    src={cert.file}
-                    className="w-full h-full border-0"
-                    title={cert.title}
-                    onError={() => console.log('PDF load error')}
-                  />
+                  <iframe src={cert.file} className="w-full h-full border-0" title={cert.title} />
                 ) : (
                   <img src={cert.file} alt={cert.title} className="object-contain h-full w-full" />
                 )}
               </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors duration-300">
-                  {cert.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-2">{cert.date}</p>
-                <p className="text-purple-300 text-xs font-medium mb-2">{cert.topic}</p>
-                <p className="text-slate-600 dark:text-gray-300 text-xs">{cert.provider}</p>
+              <div className="p-4 flex-1 flex flex-col">
+                <h3 className="font-semibold text-slate-800 dark:text-slate-100 mb-1 line-clamp-2">{cert.title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-xs">{cert.provider} · {cert.date}</p>
+                <p className="text-slate-400 dark:text-slate-500 text-xs mt-0.5">{cert.topic}</p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none"></div>
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500 pointer-events-none blur-xl -z-10"></div>
             </button>
           ))}
         </div>
-        {/* Load More Button */}
+
         {filtered.length > visibleCount && (
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center">
             <button
               onClick={() => setVisibleCount(v => v + 6)}
-              className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg"
+              className="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white font-medium rounded-lg text-sm transition-colors"
             >
-              Load More
+              Load more
             </button>
           </div>
         )}
-        {/* Modal Preview */}
+
         {modalOpen && modalCert && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 dark:bg-black/70 backdrop-blur-sm">
-            <div className="bg-slate-900 rounded-2xl p-6 max-w-3xl w-full relative shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/90 dark:bg-black/90 p-4">
+            <div className="bg-white dark:bg-slate-900 rounded-xl p-6 max-w-3xl w-full relative border border-slate-200 dark:border-slate-700">
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 text-white bg-pink-500/80 hover:bg-pink-600 rounded-full p-2 focus:outline-none"
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 focus:outline-none"
                 aria-label="Close preview"
               >
                 &times;
               </button>
-              <div className="flex flex-col items-center">
-                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">{modalCert.title}</h3>
-                <p className="text-slate-500 dark:text-gray-400 text-sm mb-2">{modalCert.provider} &bull; {modalCert.topic} &bull; {modalCert.date}</p>
-                <div className="w-full flex justify-center items-center my-4">
-                  {modalCert.type === 'pdf' ? (
-                    <iframe
-                      src={modalCert.file}
-                      className="w-full h-[60vh] border-0 rounded-lg"
-                      title={modalCert.title}
-                      onError={() => console.log('Modal PDF load error')}
-                    />
-                  ) : (
-                    <img src={modalCert.file} alt={modalCert.title} className="object-contain max-h-[60vh] w-auto" />
-                  )}
-                </div>
-                <a
-                  href={modalCert.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold shadow hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
-                >
-                  View Full Certificate
-                </a>
+              <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-1">{modalCert.title}</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">{modalCert.provider} · {modalCert.topic} · {modalCert.date}</p>
+              <div className="w-full flex justify-center my-4 min-h-[50vh]">
+                {modalCert.type === 'pdf' ? (
+                  <iframe src={modalCert.file} className="w-full h-[60vh] border-0 rounded-lg" title={modalCert.title} />
+                ) : (
+                  <img src={modalCert.file} alt={modalCert.title} className="object-contain max-h-[60vh] w-auto" />
+                )}
               </div>
+              <a
+                href={modalCert.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-4 px-6 py-2.5 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white font-medium rounded-lg text-sm transition-colors"
+              >
+                Open certificate
+              </a>
             </div>
           </div>
         )}
