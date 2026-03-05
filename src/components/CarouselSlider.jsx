@@ -9,6 +9,7 @@ const CarouselSlider = ({
   showDots = true,
   showArrows = true,
   itemsPerView = 3,
+  itemsPerViewMobile = 1,
   simple = false,
   className = ""
 }) => {
@@ -18,12 +19,22 @@ const CarouselSlider = ({
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  
+  const [effectiveItemsPerView, setEffectiveItemsPerView] = useState(itemsPerView);
+
   const carouselRef = useRef(null);
   const autoPlayRef = useRef(null);
 
+  // Responsive: use itemsPerViewMobile below 640px
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 640px)');
+    const update = () => setEffectiveItemsPerView(mq.matches ? itemsPerView : itemsPerViewMobile);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, [itemsPerView, itemsPerViewMobile]);
+
   // Calculate total slides and max index
-  const totalSlides = Math.max(0, items.length - itemsPerView);
+  const totalSlides = Math.max(0, items.length - effectiveItemsPerView);
   const maxIndex = Math.max(0, totalSlides);
 
   // Auto-play functionality
@@ -98,11 +109,16 @@ const CarouselSlider = ({
 
   const handleTouchEnd = useCallback(() => {
     setIsDragging(false);
+    if (!carouselRef.current) return;
     const currentScrollLeft = carouselRef.current.scrollLeft;
-    const itemWidth = carouselRef.current.offsetWidth / itemsPerView;
-    const newIndex = Math.round(currentScrollLeft / itemWidth);
-    goToSlide(newIndex);
-  }, [goToSlide, itemsPerView]);
+    const children = carouselRef.current.children;
+    let newIndex = 0;
+    for (let i = 0; i < children.length; i++) {
+      const childLeft = children[i].offsetLeft;
+      if (currentScrollLeft >= childLeft - 20) newIndex = i;
+    }
+    goToSlide(Math.min(newIndex, maxIndex));
+  }, [goToSlide, maxIndex]);
 
   // Mouse drag functionality
   const handleMouseDown = useCallback((e) => {
@@ -121,25 +137,30 @@ const CarouselSlider = ({
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
+    if (!carouselRef.current) return;
     const currentScrollLeft = carouselRef.current.scrollLeft;
-    const itemWidth = carouselRef.current.offsetWidth / itemsPerView;
-    const newIndex = Math.round(currentScrollLeft / itemWidth);
-    goToSlide(newIndex);
-  }, [goToSlide, itemsPerView]);
+    const children = carouselRef.current.children;
+    let newIndex = 0;
+    for (let i = 0; i < children.length; i++) {
+      const childLeft = children[i].offsetLeft;
+      if (currentScrollLeft >= childLeft - 20) newIndex = i;
+    }
+    goToSlide(Math.min(newIndex, maxIndex));
+  }, [goToSlide, maxIndex]);
 
   // Update scroll position when currentIndex changes
   useEffect(() => {
-    if (carouselRef.current) {
-      const itemWidth = carouselRef.current.offsetWidth / itemsPerView;
+    if (carouselRef.current && carouselRef.current.children[currentIndex]) {
+      const targetLeft = carouselRef.current.children[currentIndex].offsetLeft;
       carouselRef.current.scrollTo({
-        left: currentIndex * itemWidth,
+        left: targetLeft,
         behavior: 'smooth'
       });
     }
-  }, [currentIndex, itemsPerView]);
+  }, [currentIndex, effectiveItemsPerView]);
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative w-full max-w-full min-w-0 overflow-hidden ${className}`}>
       {/* Header with enhanced styling */}
       {(title || subtitle) && (
         <div className="text-center mb-12">
@@ -157,13 +178,13 @@ const CarouselSlider = ({
       )}
 
       {/* Carousel: arrows outside, track in middle */}
-      <div className="relative group flex items-center gap-2 md:gap-4">
+      <div className="relative group flex items-center gap-2 md:gap-4 w-full min-w-0">
         {/* Left arrow - outside */}
-        {showArrows && items.length > itemsPerView && (
+        {showArrows && items.length > effectiveItemsPerView && (
           <button
             onClick={goToPrev}
             disabled={isTransitioning}
-            className="flex-shrink-0 z-20 w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors border border-slate-200 dark:border-slate-600 shadow"
+            className="flex-shrink-0 z-20 min-w-[44px] min-h-[44px] w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white dark:bg-slate-800 rounded-full text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors border border-slate-200 dark:border-slate-600 shadow touch-manipulation"
             aria-label="Previous slide"
           >
             <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,7 +196,7 @@ const CarouselSlider = ({
         {/* Carousel track */}
         <div
           ref={carouselRef}
-          className="flex-1 min-w-0 flex gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4"
+          className="flex-1 min-w-0 flex gap-4 sm:gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none'
@@ -197,8 +218,8 @@ const CarouselSlider = ({
               key={index}
               className="flex-shrink-0 w-full snap-start"
               style={{ 
-                width: `calc(100% / ${itemsPerView} - 1.5rem)`,
-                minWidth: `calc(100% / ${itemsPerView} - 1.5rem)`
+                width: effectiveItemsPerView === 1 ? '100%' : `calc((100% - 2rem * (${effectiveItemsPerView} - 1)) / ${effectiveItemsPerView})`,
+                minWidth: effectiveItemsPerView === 1 ? '100%' : `calc((100% - 2rem * (${effectiveItemsPerView} - 1)) / ${effectiveItemsPerView})`
               }}
             >
               {item}
@@ -207,11 +228,11 @@ const CarouselSlider = ({
         </div>
 
         {/* Right arrow - outside */}
-        {showArrows && items.length > itemsPerView && (
+        {showArrows && items.length > effectiveItemsPerView && (
           <button
             onClick={goToNext}
             disabled={isTransitioning}
-            className="flex-shrink-0 z-20 w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors border border-slate-200 dark:border-slate-600 shadow"
+            className="flex-shrink-0 z-20 min-w-[44px] min-h-[44px] w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white dark:bg-slate-800 rounded-full text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white dark:hover:bg-teal-500 transition-colors border border-slate-200 dark:border-slate-600 shadow touch-manipulation"
             aria-label="Next slide"
           >
             <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -235,21 +256,26 @@ const CarouselSlider = ({
         </div>
       )}
 
-      {/* Enhanced Dots Navigation */}
-      {showDots && items.length > itemsPerView && (
-        <div className="flex justify-center items-center space-x-3 mt-12">
+      {/* Dots Navigation */}
+      {showDots && items.length > effectiveItemsPerView && (
+        <div className="flex justify-center items-center gap-2 sm:gap-3 mt-8 sm:mt-12 py-2">
           {Array.from({ length: maxIndex + 1 }, (_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
               disabled={isTransitioning}
-              className={`w-4 h-4 rounded-full transition-all duration-300 transform hover:scale-125 ${
-                index === currentIndex
-                  ? 'bg-teal-500 scale-125'
-                  : 'bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500'
-              }`}
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300 touch-manipulation p-0 border-0"
               aria-label={`Go to slide ${index + 1}`}
-            />
+            >
+              <span
+                className={`rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-teal-500 w-3 h-3 sm:w-4 sm:h-4 scale-125'
+                    : 'bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500 w-2.5 h-2.5 sm:w-4 sm:h-4'
+                }`}
+                aria-hidden
+              />
+            </button>
           ))}
         </div>
       )}

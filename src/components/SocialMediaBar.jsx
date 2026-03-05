@@ -31,14 +31,14 @@ const socials = [
 ];
 
 const SocialMediaBar = () => (
-  <div className="fixed top-1/2 left-4 -translate-y-1/2 z-40 flex flex-col gap-2">
+  <div className="fixed top-1/2 left-2 sm:left-4 -translate-y-1/2 z-40 hidden sm:flex flex-col gap-2">
     {socials.map((s) => (
       <a
         key={s.name}
         href={s.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="rounded-lg p-2.5 flex items-center justify-center bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-teal-500 hover:text-white hover:border-teal-500 dark:hover:bg-teal-500 dark:hover:border-teal-500 transition-colors shadow-sm"
+        className="rounded-lg p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-teal-500 hover:text-white hover:border-teal-500 dark:hover:bg-teal-500 dark:hover:border-teal-500 transition-colors shadow-sm touch-manipulation"
         aria-label={s.name}
       >
         {s.icon}

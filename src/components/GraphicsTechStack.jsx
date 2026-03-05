@@ -21,23 +21,23 @@ const GraphicsTechStack = () => {
   ];
 
   return (
-    <section id="skills" className="py-16 px-4 bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
+    <section id="skills" className="py-12 sm:py-16 px-3 sm:px-4 bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
       <div className="section-container max-w-4xl">
-        <div className="mb-12">
+        <div className="mb-8 sm:mb-10">
           <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Skills</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight break-words">
             Tech stack
           </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400 text-sm max-w-xl">
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 max-w-xl">
             Tools and runtimes I use for development and testing.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-14">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-10 sm:mb-14">
           {techStack.map((tech) => (
             <div
               key={tech.name}
-              className={`rounded-lg border px-4 py-3 transition-colors cursor-default ${
+              className={`rounded-lg border px-3 sm:px-4 py-2.5 sm:py-3 transition-colors cursor-default min-h-[44px] flex flex-col justify-center ${
                 hoveredTech === tech.name
                   ? 'border-teal-500/40 bg-teal-500/5 dark:bg-teal-500/10'
                   : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 hover:border-slate-300 dark:hover:border-slate-600'

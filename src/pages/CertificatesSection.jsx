@@ -75,19 +75,22 @@ const CertificatesSection = () => {
   };
 
   return (
-    <section id="certificates" className="py-16 px-4 bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
+    <section id="certificates" className="py-12 sm:py-16 px-3 sm:px-4 bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
       <div className="section-container">
-        <div className="mb-10">
+        <div className="mb-8 sm:mb-10">
           <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Certificates</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight break-words">
             Certificates
           </h2>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 max-w-xl">
+            Training and certifications in development, QA, and tools.
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-2 mb-6">
           <button
             onClick={() => { setSelectedProvider('All'); setSelectedTopic('All'); setVisibleCount(6); }}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedProvider === 'All' ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-600'}`}
+            className={`min-h-[44px] px-4 py-2 rounded-lg text-sm font-medium transition-colors touch-manipulation ${selectedProvider === 'All' ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-600'}`}
           >
             All
           </button>
@@ -95,7 +98,7 @@ const CertificatesSection = () => {
             <button
               key={provider}
               onClick={() => { setSelectedProvider(provider); setSelectedTopic('All'); setVisibleCount(6); }}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedProvider === provider ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-600'}`}
+              className={`min-h-[44px] px-4 py-2 rounded-lg text-sm font-medium transition-colors touch-manipulation ${selectedProvider === provider ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-600'}`}
             >
               {provider}
             </button>
@@ -104,7 +107,7 @@ const CertificatesSection = () => {
         <div className="flex flex-wrap gap-2 mb-8">
           <button
             onClick={() => { setSelectedTopic('All'); setVisibleCount(6); }}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${selectedTopic === 'All' ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}
+            className={`min-h-[44px] px-3 py-2 rounded-md text-xs font-medium transition-colors touch-manipulation ${selectedTopic === 'All' ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}
           >
             All topics
           </button>
@@ -112,7 +115,7 @@ const CertificatesSection = () => {
             <button
               key={topic}
               onClick={() => { setSelectedTopic(topic); setVisibleCount(6); }}
-              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${selectedTopic === topic ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}
+              className={`min-h-[44px] px-3 py-2 rounded-md text-xs font-medium transition-colors touch-manipulation ${selectedTopic === topic ? 'bg-teal-600 text-white dark:bg-teal-500 dark:text-slate-900' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}
             >
               {topic}
             </button>

@@ -47,7 +47,7 @@ const WorkExperience = () => {
   const experienceCards = experiences.map((exp, i) => (
     <article
       key={`${exp.company}-${exp.jobTitle}-${i}`}
-      className="h-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-zinc-900/80 p-6 md:p-8 transition-colors hover:border-teal-500/30 dark:hover:border-teal-500/30"
+      className="h-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-zinc-900/80 p-4 sm:p-6 md:p-8 transition-colors hover:border-teal-500/30 dark:hover:border-teal-500/30 min-w-0"
     >
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
         <div>
@@ -84,11 +84,11 @@ const WorkExperience = () => {
   ));
 
   return (
-    <section id="work-experience" className="py-16 px-4 bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
-      <div className="section-container">
-        <div className="mb-10">
+    <section id="work-experience" className="py-12 sm:py-16 px-3 sm:px-4 bg-slate-50 dark:bg-zinc-950 transition-colors duration-300 w-full overflow-hidden">
+      <div className="section-container w-full min-w-0">
+        <div className="mb-8 sm:mb-10">
           <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Experience</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-black dark:text-slate-100 tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-black dark:text-slate-100 tracking-tight break-words">
             Work experience
           </h2>
           <p className="text-black/80 dark:text-slate-400 text-sm mt-2 max-w-xl">
@@ -106,7 +106,7 @@ const WorkExperience = () => {
           showArrows={true}
           itemsPerView={1}
           simple={true}
-          className="max-w-3xl mx-auto"
+          className="max-w-3xl mx-auto w-full"
         />
       </div>
     </section>

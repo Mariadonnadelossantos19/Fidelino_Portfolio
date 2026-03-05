@@ -1,57 +1,51 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import HeroSection from './pages/HeroSection'
-import AboutSection from './pages/AboutSection'
-import CertificatesSection from './pages/CertificatesSection'
-import ProjectsSection from './pages/ProjectsSection'
-import ContactSection from './pages/ContactSection'
-import Footer from './pages/Footer'
-import SocialMediaBar from './components/SocialMediaBar'
-import WorkExperience from './pages/WorkExperience'
-import GraphicsTechStack from './components/GraphicsTechStack'
-
+import { useState, useEffect } from 'react';
+import './App.css';
+import { SECTION_IDS } from './constants/sections';
+import Navbar from './components/Navbar';
+import SocialMediaBar from './components/SocialMediaBar';
+import GraphicsTechStack from './components/GraphicsTechStack';
+import HeroSection from './pages/HeroSection';
+import AboutSection from './pages/AboutSection';
+import WorkExperience from './pages/WorkExperience';
+import ProjectsSection from './pages/ProjectsSection';
+import CertificatesSection from './pages/CertificatesSection';
+import ContactSection from './pages/ContactSection';
+import Footer from './pages/Footer';
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home')
+  const [activeSection, setActiveSection] = useState('home');
 
-  // Smooth scrolling for navigation
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setActiveSection(sectionId)
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
     }
-  }
+  };
 
-  // Handle scroll to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'work-experience', 'projects', 'certificates', 'contact']
-      const scrollPosition = window.scrollY + 100
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
+      const scrollPosition = window.scrollY + 100;
+      for (const sectionId of SECTION_IDS) {
+        const element = document.getElementById(sectionId);
         if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
-
+          const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+            setActiveSection(sectionId);
+            break;
           }
         }
       }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+    <div className="min-h-screen min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-slate-50 dark:bg-zinc-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
       <SocialMediaBar />
       <Navbar />
+      {/* Sections in order: Home → About → Skills → Work → Projects → Certificates → Contact */}
       <HeroSection scrollToSection={scrollToSection} />
       <AboutSection />
       <GraphicsTechStack />
@@ -61,7 +55,7 @@ function App() {
       <ContactSection />
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

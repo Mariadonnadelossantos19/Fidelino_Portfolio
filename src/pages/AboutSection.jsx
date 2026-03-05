@@ -16,31 +16,33 @@ const AWARDS = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-16 px-4 bg-white dark:bg-zinc-950 transition-colors duration-300">
-      <div className="section-container">
-        <div className="mb-12">
+    <section id="about" className="py-12 sm:py-16 px-3 sm:px-4 bg-white dark:bg-zinc-950 transition-colors duration-300 w-full overflow-hidden">
+      <div className="section-container w-full min-w-0">
+        <div className="mb-8 sm:mb-10">
           <p className="section-label text-teal-600 dark:text-teal-400 mb-2">About</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-black dark:text-slate-100 tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-black dark:text-slate-100 tracking-tight break-words">
             About & Education
           </h2>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 max-w-xl">
+            Background, education, focus areas, and awards.
+          </p>
         </div>
 
-        {/* Intro + Photo row */}
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start mb-12">
-          <div className="space-y-4">
-            <p className="text-black dark:text-slate-400 leading-relaxed">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-14 items-start mb-8 sm:mb-12">
+          <div className="space-y-4 min-w-0">
+            <p className="text-black dark:text-slate-400 leading-relaxed text-sm sm:text-base break-words">
               I'm a <strong className="text-black dark:text-slate-200">QA Engineer and Full Stack Developer</strong>. I've worked on DOST projects—testing, automation, and building internal tools—and I'm comfortable across the stack: frontend, backend, and quality assurance.
             </p>
-            <p className="text-black dark:text-slate-400 leading-relaxed">
+            <p className="text-black dark:text-slate-400 leading-relaxed text-sm sm:text-base break-words">
               I care about maintainable code, good test coverage, and shipping features that work for users.
             </p>
-            <div className="flex gap-8 text-sm text-black dark:text-slate-400 pt-2">
+            <div className="flex flex-wrap gap-4 sm:gap-8 text-sm text-black dark:text-slate-400 pt-2">
               <span><strong className="text-black dark:text-slate-300">1+</strong> year exp</span>
               <span><strong className="text-black dark:text-slate-300">10+</strong> projects</span>
             </div>
           </div>
           <div className="flex justify-center lg:justify-end">
-            <div className="w-[260px] flex-shrink-0 overflow-hidden rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 shadow-xl">
+            <div className="w-full max-w-[260px] flex-shrink-0 overflow-hidden rounded-xl border-2 border-slate-200 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 shadow-xl mx-auto lg:mx-0">
               <img
                 src={yourProfilePhoto}
                 alt="Ma. Donna Fidelino"
@@ -54,10 +56,9 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* Education | Focus | Awards — three equal cards */}s
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Education */}
-          <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-6 h-full flex flex-col">
+        {/* Education | Focus | Awards — three equal cards */}
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-4 sm:p-6 h-full flex flex-col min-w-0">
             <h3 className="text-xs font-semibold text-teal-600 dark:text-teal-400 uppercase tracking-wider mb-4">
               Education
             </h3>
@@ -72,8 +73,7 @@ const AboutSection = () => {
             </p>
           </div>
 
-          {/* Focus */}
-          <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-6 h-full flex flex-col">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-4 sm:p-6 h-full flex flex-col min-w-0">
             <h3 className="text-xs font-semibold text-teal-600 dark:text-teal-400 uppercase tracking-wider mb-4">
               Focus
             </h3>
@@ -87,8 +87,7 @@ const AboutSection = () => {
             </ul>
           </div>
 
-          {/* Awards */}
-          <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-6 h-full flex flex-col">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-4 sm:p-6 h-full flex flex-col min-w-0">
             <h3 className="text-xs font-semibold text-teal-600 dark:text-teal-400 uppercase tracking-wider mb-4">
               Awards
             </h3>

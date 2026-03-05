@@ -41,13 +41,13 @@ const ProjectsSection = () => {
   const projectCards = projects.map((project) => (
     <div
       key={project.id}
-      className="group relative bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-colors duration-200 h-full"
+      className="group relative bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-colors duration-200 h-full min-w-0 w-full max-w-full"
     >
       <a
         href={project.liveUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="block aspect-video bg-slate-100 dark:bg-slate-800 relative overflow-hidden"
+        className="block aspect-video min-h-[140px] sm:min-h-[200px] bg-slate-100 dark:bg-slate-800 relative overflow-hidden w-full"
         aria-label={`Open ${project.title} — live preview`}
       >
         <iframe
@@ -58,12 +58,12 @@ const ProjectsSection = () => {
           sandbox="allow-scripts allow-same-origin"
         />
       </a>
-      <div className="p-6 flex flex-col h-full">
-        <div className="flex-grow">
-          <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-2">
+      <div className="p-4 sm:p-6 flex flex-col h-full min-w-0">
+        <div className="flex-grow min-w-0">
+          <h3 className="text-base sm:text-lg font-semibold text-slate-800 dark:text-white mb-2 break-words">
             {project.title}
           </h3>
-          <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed break-words overflow-hidden">
             {project.description}
           </p>
         </div>
@@ -106,11 +106,11 @@ const ProjectsSection = () => {
   ));
 
   return (
-    <section id="projects" className="py-16 px-4 bg-white dark:bg-zinc-950 transition-colors duration-300">
-      <div className="section-container max-w-6xl">
-        <div className="mb-10">
+    <section id="projects" className="py-12 sm:py-16 px-3 sm:px-4 bg-white dark:bg-zinc-950 transition-colors duration-300">
+      <div className="section-container max-w-6xl xl:max-w-7xl">
+        <div className="mb-8 sm:mb-10">
           <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Projects</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight break-words">
             Projects
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 max-w-xl">
@@ -125,19 +125,20 @@ const ProjectsSection = () => {
           autoPlayInterval={5000}
           showDots={true}
           showArrows={true}
-          itemsPerView={3}
+          itemsPerView={2}
+          itemsPerViewMobile={1}
           simple={true}
           className="mb-16"
         />
 
-        <div className="text-center">
-          <div className="rounded-xl p-8 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 max-w-xl mx-auto">
-            <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm">
+        <div className="text-center px-2">
+          <div className="rounded-xl p-5 sm:p-8 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 max-w-xl mx-auto">
+            <p className="text-slate-600 dark:text-slate-400 mb-5 sm:mb-6 text-sm break-words">
               Have a project in mind? I’d be glad to hear about it.
             </p>
             <button
               onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-              className="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white font-medium rounded-lg text-sm transition-colors"
+              className="min-h-[44px] px-5 sm:px-6 py-3 sm:py-2.5 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white font-medium rounded-lg text-sm transition-colors touch-manipulation"
             >
               Get in touch
             </button>

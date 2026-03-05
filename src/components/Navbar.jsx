@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
+import { SECTIONS } from '../constants/sections';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,26 +19,20 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle active section detection
   useEffect(() => {
     const handleScrollSpy = () => {
-      const sections = ['home', 'about', 'skills', 'work-experience', 'projects', 'certificates', 'contact'];
       const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
+      for (const { id } of SECTIONS) {
+        const element = document.getElementById(id);
         if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-
+          const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
+            setActiveSection(id);
             break;
           }
         }
       }
     };
-
     window.addEventListener('scroll', handleScrollSpy);
     return () => window.removeEventListener('scroll', handleScrollSpy);
   }, []);
@@ -54,29 +49,21 @@ const Navbar = () => {
     setIsOpen(false); // Close mobile menu after clicking
   };
 
-  const menuItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'work-experience', label: 'Work' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'certificates', label: 'Certificates' },
-    { id: 'contact', label: 'Contact' },
-  ];
+  const menuItems = SECTIONS.map(({ id, label }) => ({ id, label }));
 
   return (
     <motion.nav 
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 safe-top ${
       isScrolled 
           ? 'bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800' 
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex justify-between items-center h-16">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 box-border min-w-0">
+        <div className="flex justify-between items-center h-14 sm:h-16">
           {/* Minimalist Logo */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
@@ -89,8 +76,8 @@ const Navbar = () => {
                 <span className="text-white dark:text-slate-900 font-bold text-sm">MF</span>
               </div>
             </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold text-slate-800 dark:text-slate-100">
+            <div className="flex flex-col min-w-0">
+              <span className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 truncate">
                 Fidelino
               </span>
               <span className="text-xs text-slate-500 dark:text-slate-400">QA Engineer</span>
@@ -167,8 +154,9 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              aria-expanded="false"
+              className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] p-2 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors touch-manipulation"
+              aria-expanded={isOpen}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               <span className="sr-only">Toggle menu</span>
               <motion.div
@@ -218,17 +206,17 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="md:hidden overflow-hidden bg-white/90 dark:bg-black/20 backdrop-blur-2xl border-t border-slate-200 dark:border-white/10"
           >
-            <div className="px-6 py-4 space-y-1">
+            <div className="px-4 sm:px-6 py-4 space-y-1">
               {menuItems.map((item, index) => (
                 <motion.button
-              key={item.id}
+                  key={item.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-              onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  onClick={() => scrollToSection(item.id)}
+                  className={`flex items-center w-full text-left px-4 py-3.5 min-h-[44px] rounded-lg text-sm font-medium transition-colors touch-manipulation ${
                 activeSection === item.id
                       ? 'text-teal-600 dark:text-teal-400 bg-teal-500/10'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -252,17 +240,17 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="hidden md:block lg:hidden overflow-hidden bg-white/90 dark:bg-black/20 backdrop-blur-2xl border-t border-slate-200 dark:border-white/10"
           >
-            <div className="px-6 py-4 space-y-1">
+            <div className="px-4 sm:px-6 py-4 space-y-1">
               {menuItems.slice(4).map((item, index) => (
                 <motion.button
-              key={item.id}
+                  key={item.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-              onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  onClick={() => scrollToSection(item.id)}
+                  className={`flex items-center w-full text-left px-4 py-3.5 min-h-[44px] rounded-lg text-sm font-medium transition-colors touch-manipulation ${
                 activeSection === item.id
                       ? 'text-teal-600 dark:text-teal-400 bg-teal-500/10'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'

@@ -49,15 +49,18 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-16 px-4 bg-white dark:bg-zinc-950 transition-colors duration-300">
+    <section id="contact" className="py-12 sm:py-16 px-3 sm:px-4 bg-white dark:bg-zinc-950 transition-colors duration-300">
       <div className="section-container max-w-4xl">
-        <div className="mb-12">
+        <div className="mb-8 sm:mb-10">
           <p className="section-label text-teal-600 dark:text-teal-400 mb-2">Contact</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 tracking-tight break-words">
             Get in touch
           </h2>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1 max-w-xl">
+            Open to opportunities and projects. Say hello—I’ll get back to you.
+          </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
           <div>
             <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4">Work with me</h3>
             <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
@@ -105,7 +108,7 @@ const ContactSection = () => {
               </a>
             </div>
           </div>
-          <div className="rounded-xl p-8 border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50">
+          <div className="rounded-xl p-5 sm:p-8 border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50">
             {alert && (
               <div
                 className={`mb-6 px-4 py-3 rounded-lg text-sm font-semibold shadow-md transition-all duration-300 ${
@@ -131,7 +134,7 @@ const ContactSection = () => {
                     required
                     aria-required="true"
                     aria-label="Name"
-                    className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors"
+                    className="w-full px-4 py-3 min-h-[48px] bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors text-base sm:text-inherit"
                     placeholder="Your name"
                     value={form.name}
                     onChange={handleChange}
@@ -146,7 +149,7 @@ const ContactSection = () => {
                     required
                     aria-required="true"
                     aria-label="Email"
-                    className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors"
+                    className="w-full px-4 py-3 min-h-[48px] bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors text-base sm:text-inherit"
                     placeholder="your.email@example.com"
                     value={form.email}
                     onChange={handleChange}
@@ -163,7 +166,7 @@ const ContactSection = () => {
                   required
                   aria-required="true"
                   aria-label="Message"
-                  className="w-full px-4 py-3 bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors resize-none"
+                  className="w-full px-4 py-3 min-h-[120px] bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/20 rounded-lg text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-teal-500 dark:focus:border-teal-400 transition-colors resize-none text-base sm:text-inherit"
                   placeholder="Your message..."
                   value={form.message}
                   onChange={handleChange}
@@ -171,7 +174,7 @@ const ContactSection = () => {
               </div>
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white dark:text-slate-900 font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900"
+                className="w-full min-h-[48px] px-6 py-3 bg-teal-600 hover:bg-teal-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white dark:text-slate-900 font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900 touch-manipulation"
                 disabled={loading}
                 aria-busy={loading}
               >
