@@ -6,9 +6,9 @@ const HeroSection = ({ scrollToSection }) => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-24 pb-20">
       <div className="section-container w-full">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-          {/* Left: Text */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-16 items-center">
+          {/* Left: Name & intro first so it’s the main focus */}
+          <div className="text-center lg:text-left order-1">
             <p className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-teal-700 dark:text-teal-300 bg-teal-500/15 dark:bg-teal-500/20 px-3 py-1.5 rounded-md mb-4">
               QA Engineer & Full Stack Developer
             </p>
@@ -56,15 +56,15 @@ const HeroSection = ({ scrollToSection }) => {
             </div>
           </div>
 
-          {/* Right: Photo — fills column to reduce white space */}
-          <div className="w-full flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="w-full max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl aspect-[4/5] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 shadow-xl">
+          {/* Right: Professional headshot — modest size so name stays the focus */}
+          <div className="w-full flex justify-center lg:justify-end order-2">
+            <div className="w-full max-w-[200px] sm:max-w-[240px] md:max-w-[260px] lg:max-w-[280px] aspect-[3/4] rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 shadow-lg ring-1 ring-slate-200/50 dark:ring-slate-600/50">
               <img
                 src={heroImage}
                 alt="Ma. Donna D. Fidelino"
                 className="w-full h-full object-cover object-top"
-                width={480}
-                height={600}
+                width={280}
+                height={373}
                 fetchPriority="high"
               />
             </div>
